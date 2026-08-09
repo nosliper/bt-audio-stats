@@ -1,19 +1,11 @@
 package com.example.btaudiomonitor.data.tier2
 
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/**
- * Covers the state mapping and counter-baseline handling. Uses a short poll interval and
- * a scripted source rather than a virtual-time test dispatcher, to avoid pulling in a
- * test-only coroutines dependency for what is a handful of emissions.
- */
 class Tier2RepositoryTest {
 
     /** Returns each script entry in turn, repeating the last one forever. */
@@ -25,75 +17,158 @@ class Tier2RepositoryTest {
             script[minOf(calls++, script.size - 1)]
     }
 
-    private fun dumpWith(codec: String, pcmBytes: Long) = """
+    private fun dump(
+        codec: String = "LDAC",
+        pcmBytes: Long = 0,
+        packetsExpected: Long = 0,
+        packetsDropped: Long = 0,
+        ldacKbps: Int = 990,
+        playing: Boolean = true,
+    ) = """
         |  mActiveDevice: DE:VI:CE:00:00:00
         |  === A2dpStateMachine for DE:VI:CE:00:00:00 ===
-        |    mIsPlaying: true
+        |    mIsPlaying: $playing
         |    mCodecConfig: {codecName:$codec,mCodecType:4,mSampleRate:0x8(96000),mBitsPerSample:0x4(32),mChannelMode:0x2(STEREO)}
         |
         |A2DP $codec State:
+        |  LDAC transmission bitrate (Kbps)                        : $ldacKbps
+        |  Packet counts (expected/dropped)                        : $packetsExpected / $packetsDropped
         |  PCM read bytes (expected/actual)                        : $pcmBytes / $pcmBytes
     """.trimMargin()
 
-    private fun collect(source: DumpsysSource, count: Int): List<Tier2State> = runBlocking {
-        Tier2RepositoryImpl(source).codecStatus(flowOf(20L)).take(count).toList()
-    }
+    // --- read() -------------------------------------------------------------
 
-    /** An unreadable dump means DUMP is not granted — the UI must offer setup, not an error. */
     @Test
-    fun `reports unavailable when the dump cannot be read`() {
-        assertEquals(listOf(Tier2State.Unavailable), collect(ScriptedSource(null), 1))
-    }
-
-    /** Readable but nothing connected is a different state from "not set up". */
-    @Test
-    fun `reports no active codec when the dump has nothing to parse`() {
-        assertEquals(listOf(Tier2State.NoActiveCodec), collect(ScriptedSource("Bluetooth is off"), 1))
+    fun `read reports unavailable when the dump cannot be read`() = runBlocking {
+        assertEquals(Tier2State.Unavailable, Tier2RepositoryImpl(ScriptedSource(null)).read())
     }
 
     @Test
-    fun `reports the parsed codec when available`() {
-        val states = collect(ScriptedSource(dumpWith("LDAC", 1_000)), 1)
-
-        val available = states.single() as Tier2State.Available
-        assertEquals("LDAC", available.status.codecName)
-        assertEquals(96_000, available.status.sampleRateHz)
-    }
-
-    /** No baseline exists on the first poll, so no rate may be claimed yet. */
-    @Test
-    fun `does not report throughput on the first sample`() {
-        val states = collect(ScriptedSource(dumpWith("LDAC", 1_000)), 1)
-
-        assertNull((states.single() as Tier2State.Available).measuredBytesPerSecond)
+    fun `read reports no active codec when there is nothing to parse`() = runBlocking {
+        assertEquals(
+            Tier2State.NoActiveCodec,
+            Tier2RepositoryImpl(ScriptedSource("Bluetooth is off")).read(),
+        )
     }
 
     @Test
-    fun `measures throughput once a baseline exists`() {
-        val source = ScriptedSource(dumpWith("LDAC", 0), dumpWith("LDAC", 100_000))
+    fun `read returns the parsed codec`() = runBlocking {
+        val state = Tier2RepositoryImpl(ScriptedSource(dump())).read()
 
-        val measured = collect(source, 2)
-            .filterIsInstance<Tier2State.Available>()
-            .mapNotNull { it.measuredBytesPerSecond }
+        assertEquals("LDAC", (state as Tier2State.Available).status.codecName)
+    }
 
-        assertTrue("expected a rate after the second sample", measured.isNotEmpty())
-        assertTrue("rate should be positive", measured.first() > 0)
+    /** One read must cost exactly one dumpsys — this is the whole reason it is on demand. */
+    @Test
+    fun `read costs a single dumpsys call`() = runBlocking {
+        val source = ScriptedSource(dump())
+
+        Tier2RepositoryImpl(source).read()
+
+        assertEquals(1, source.calls)
+    }
+
+    // --- runBenchmark() -----------------------------------------------------
+
+    private fun benchmark(source: DumpsysSource, durationMillis: Long = 60) =
+        runBlocking { Tier2RepositoryImpl(source).runBenchmark(durationMillis).toList() }
+
+    @Test
+    fun `benchmark measures average throughput across the window`() {
+        val source = ScriptedSource(
+            dump(pcmBytes = 0, packetsExpected = 0, packetsDropped = 0),
+            dump(pcmBytes = 1_000_000, packetsExpected = 500, packetsDropped = 3),
+        )
+
+        val result = benchmark(source).filterIsInstance<BenchmarkState.Complete>().single().result
+
+        assertEquals(1_000_000L, result.bytesTransferred)
+        assertTrue("expected a positive rate", result.averageBytesPerSecond > 0)
+        // Counters are reported as deltas over the run, not lifetime totals.
+        assertEquals(500L, result.packetsExpected)
+        assertEquals(3L, result.packetsDropped)
     }
 
     /**
-     * Renegotiation zeroes the encoder counters. Differencing a fresh counter against
-     * the previous codec's total would produce a wild figure, so the baseline resets.
+     * The point of the redesign: a 60 s run must not cost 60 dumpsys calls. Two reads,
+     * regardless of duration, because polling made audio stutter.
      */
     @Test
-    fun `resets the baseline when the codec changes`() {
-        val source = ScriptedSource(
-            dumpWith("LDAC", 5_000_000),
-            dumpWith("AAC", 1_000), // renegotiated: counter restarted
+    fun `benchmark costs exactly two dumpsys calls regardless of duration`() {
+        val source = ScriptedSource(dump(pcmBytes = 0), dump(pcmBytes = 100))
+
+        benchmark(source, durationMillis = 500)
+
+        assertEquals(2, source.calls)
+    }
+
+    @Test
+    fun `benchmark emits progress before completing`() {
+        val states = benchmark(
+            ScriptedSource(dump(pcmBytes = 0), dump(pcmBytes = 100)),
+            durationMillis = 600,
         )
 
-        val states = collect(source, 2).filterIsInstance<Tier2State.Available>()
+        assertTrue(
+            "expected progress ticks",
+            states.filterIsInstance<BenchmarkState.Running>().isNotEmpty(),
+        )
+        assertTrue("expected a terminal state", states.last() is BenchmarkState.Complete)
+    }
 
-        assertEquals("AAC", states.last().status.codecName)
-        assertNull("must not difference across a codec change", states.last().measuredBytesPerSecond)
+    @Test
+    fun `benchmark fails when dumpsys is unreadable`() {
+        val failure = benchmark(ScriptedSource(null)).last() as BenchmarkState.Failed
+
+        assertTrue(failure.reason.contains("DUMP"))
+    }
+
+    /** Renegotiation restarts the counters, so an average across it is meaningless. */
+    @Test
+    fun `benchmark rejects a codec change mid run`() {
+        val source = ScriptedSource(
+            dump(codec = "LDAC", pcmBytes = 5_000_000),
+            dump(codec = "AAC", pcmBytes = 1_000),
+        )
+
+        val failure = benchmark(source).last() as BenchmarkState.Failed
+
+        assertTrue(failure.reason.contains("Codec changed"))
+    }
+
+    /** The counter can reset without the codec name changing. */
+    @Test
+    fun `benchmark rejects a counter reset mid run`() {
+        val source = ScriptedSource(dump(pcmBytes = 5_000_000), dump(pcmBytes = 1_000))
+
+        val failure = benchmark(source).last() as BenchmarkState.Failed
+
+        assertTrue(failure.reason.contains("reset"))
+    }
+
+    /** A paused stream still produces a number; it just needs flagging as low. */
+    @Test
+    fun `benchmark flags playback that did not run throughout`() {
+        val source = ScriptedSource(
+            dump(pcmBytes = 0, playing = true),
+            dump(pcmBytes = 100, playing = false),
+        )
+
+        val result = benchmark(source).filterIsInstance<BenchmarkState.Complete>().single().result
+
+        assertEquals(false, result.streamingThroughout)
+    }
+
+    @Test
+    fun `benchmark reports the ldac bitrate at both ends of the run`() {
+        val source = ScriptedSource(
+            dump(pcmBytes = 0, ldacKbps = 990),
+            dump(pcmBytes = 100, ldacKbps = 330),
+        )
+
+        val result = benchmark(source).filterIsInstance<BenchmarkState.Complete>().single().result
+
+        assertEquals(990, result.ldacBitrateStartKbps)
+        assertEquals(330, result.ldacBitrateEndKbps)
     }
 }

@@ -19,10 +19,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -39,12 +41,18 @@ import com.example.btaudiomonitor.data.MAX_POLL_INTERVAL_MS
 import com.example.btaudiomonitor.data.MIN_POLL_INTERVAL_MS
 import com.example.btaudiomonitor.data.model.AudioRouteInfo
 import com.example.btaudiomonitor.data.model.ConnectedDevice
+import com.example.btaudiomonitor.data.tier2.A2dpCodecStatus
+import com.example.btaudiomonitor.data.tier2.BenchmarkResult
+import com.example.btaudiomonitor.data.tier2.BenchmarkState
 import com.example.btaudiomonitor.data.tier2.Tier2State
 import com.example.btaudiomonitor.ui.format.formatBitDepth
 import com.example.btaudiomonitor.ui.format.formatBitrateBps
 import com.example.btaudiomonitor.ui.format.formatBitrateKbps
+import com.example.btaudiomonitor.ui.format.formatBytes
 import com.example.btaudiomonitor.ui.format.formatChannelCount
+import com.example.btaudiomonitor.ui.format.formatDuration
 import com.example.btaudiomonitor.ui.format.formatElapsedSince
+import com.example.btaudiomonitor.ui.format.formatLdacRange
 import com.example.btaudiomonitor.ui.format.formatPacketLoss
 import com.example.btaudiomonitor.ui.format.formatSampleRate
 import com.example.btaudiomonitor.ui.format.formatThroughput
@@ -72,6 +80,9 @@ fun DeviceListRoute(modifier: Modifier = Modifier) {
         state = uiState,
         onRequestPermission = { permissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT) },
         onPollIntervalChange = viewModel::setPollIntervalMs,
+        onRefreshTier2 = viewModel::refreshTier2,
+        onStartBenchmark = { viewModel.startBenchmark() },
+        onCancelBenchmark = viewModel::cancelBenchmark,
         modifier = modifier,
     )
 }
@@ -82,6 +93,9 @@ fun DeviceListScreen(
     state: BtAudioUiState,
     onRequestPermission: () -> Unit,
     onPollIntervalChange: (Long) -> Unit,
+    onRefreshTier2: () -> Unit,
+    onStartBenchmark: () -> Unit,
+    onCancelBenchmark: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -100,7 +114,15 @@ fun DeviceListScreen(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            item { Tier2Card(state.tier2) }
+            item {
+                Tier2Card(
+                    tier2 = state.tier2,
+                    benchmark = state.benchmark,
+                    onRefresh = onRefreshTier2,
+                    onStartBenchmark = onStartBenchmark,
+                    onCancelBenchmark = onCancelBenchmark,
+                )
+            }
             item {
                 AudioRouteCard(
                     route = state.audioRoute,
@@ -257,11 +279,23 @@ private fun ConnectedDeviceCard(device: ConnectedDevice) {
 }
 
 /**
- * The tier 2 card. This is the only place in the app showing figures that are actually
- * read from the link rather than derived from format math, so it leads the screen.
+ * The tier 2 card. The only place showing figures actually read from the link rather
+ * than derived from format math.
+ *
+ * There is no live throughput here by design: reading `dumpsys` once a second made
+ * audio audibly stutter, so measurement is an explicit, user-triggered benchmark that
+ * costs two reads for the whole run instead of one per second.
  */
 @Composable
-private fun Tier2Card(tier2: Tier2State) {
+private fun Tier2Card(
+    tier2: Tier2State,
+    benchmark: BenchmarkState,
+    onRefresh: () -> Unit,
+    onStartBenchmark: () -> Unit,
+    onCancelBenchmark: () -> Unit,
+) {
+    val running = benchmark is BenchmarkState.Running
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -273,20 +307,119 @@ private fun Tier2Card(tier2: Tier2State) {
         ),
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "Measured link stats", style = MaterialTheme.typography.titleMedium)
+            Text(text = "Link stats", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.padding(top = 4.dp))
 
             when (tier2) {
                 is Tier2State.Unavailable -> Tier2SetupHint()
-
                 is Tier2State.NoActiveCodec -> Text(
                     text = "Readable, but no A2DP codec is active right now.",
                     style = MaterialTheme.typography.bodyMedium,
                 )
+                is Tier2State.Available -> Tier2Details(tier2.status)
+            }
 
-                is Tier2State.Available -> Tier2Details(tier2)
+            if (tier2 !is Tier2State.Unavailable) {
+                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
+                BenchmarkSection(
+                    benchmark = benchmark,
+                    enabled = tier2 is Tier2State.Available,
+                    onStart = onStartBenchmark,
+                    onCancel = onCancelBenchmark,
+                )
+            }
+
+            Spacer(Modifier.padding(top = 8.dp))
+            TextButton(onClick = onRefresh, enabled = !running) {
+                Text(if (running) "Measuring…" else "Refresh link stats")
             }
         }
+    }
+}
+
+@Composable
+private fun BenchmarkSection(
+    benchmark: BenchmarkState,
+    enabled: Boolean,
+    onStart: () -> Unit,
+    onCancel: () -> Unit,
+) {
+    when (benchmark) {
+        is BenchmarkState.Idle -> {
+            Text(
+                text = "Throughput needs a timed measurement — a single reading of a " +
+                    "counter cannot give a rate.",
+                style = MaterialTheme.typography.bodySmall,
+            )
+            Spacer(Modifier.padding(top = 8.dp))
+            Button(onClick = onStart, enabled = enabled) { Text("Run 60s benchmark") }
+        }
+
+        is BenchmarkState.Running -> {
+            val remaining = ((benchmark.totalMillis - benchmark.elapsedMillis) / 1000).coerceAtLeast(0)
+            Text(
+                text = "Measuring… ${remaining}s remaining",
+                style = MaterialTheme.typography.titleSmall,
+            )
+            Spacer(Modifier.padding(top = 8.dp))
+            LinearProgressIndicator(
+                progress = {
+                    if (benchmark.totalMillis <= 0) 0f
+                    else (benchmark.elapsedMillis.toFloat() / benchmark.totalMillis).coerceIn(0f, 1f)
+                },
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Text(
+                text = "Keep audio playing. No polling happens during the run, so this " +
+                    "will not disturb playback.",
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(top = 8.dp),
+            )
+            Spacer(Modifier.padding(top = 8.dp))
+            TextButton(onClick = onCancel) { Text("Cancel") }
+        }
+
+        is BenchmarkState.Complete -> {
+            BenchmarkResultView(benchmark.result)
+            Spacer(Modifier.padding(top = 8.dp))
+            Button(onClick = onStart, enabled = enabled) { Text("Run again") }
+        }
+
+        is BenchmarkState.Failed -> {
+            Text(text = "Benchmark failed", style = MaterialTheme.typography.titleSmall)
+            Text(text = benchmark.reason, style = MaterialTheme.typography.bodySmall)
+            Spacer(Modifier.padding(top = 8.dp))
+            Button(onClick = onStart, enabled = enabled) { Text("Try again") }
+        }
+    }
+}
+
+@Composable
+private fun BenchmarkResultView(result: BenchmarkResult) {
+    Text(text = "Benchmark result", style = MaterialTheme.typography.titleSmall)
+    Spacer(Modifier.padding(top = 4.dp))
+
+    StatRow("Average throughput", formatThroughput(result.averageBytesPerSecond))
+    StatRow("Data transferred", formatBytes(result.bytesTransferred))
+    StatRow("Window", formatDuration(result.durationMillis))
+    StatRow("Codec", result.codecName)
+    StatRow(
+        "Link format",
+        "${formatSampleRate(result.sampleRateHz)} · ${formatBitDepth(result.bitsPerSample)}",
+    )
+    StatRow("Packets", formatPacketLoss(result.packetsExpected, result.packetsDropped))
+
+    // Shown as a range because LDAC's ABR mode genuinely moves during a run.
+    val ldacRange = formatLdacRange(result.ldacBitrateStartKbps, result.ldacBitrateEndKbps)
+    if (ldacRange != null) StatRow("LDAC bitrate", ldacRange)
+
+    if (!result.streamingThroughout) {
+        Text(
+            text = "Playback was not active for the whole window, so the average is an " +
+                "underestimate.",
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier.padding(top = 4.dp),
+        )
     }
 }
 
@@ -312,9 +445,7 @@ private fun Tier2SetupHint() {
 }
 
 @Composable
-private fun Tier2Details(tier2: Tier2State.Available) {
-    val status = tier2.status
-
+private fun Tier2Details(status: A2dpCodecStatus) {
     StatRow("Codec", status.codecName)
     StatRow(
         "Link format",
@@ -330,23 +461,7 @@ private fun Tier2Details(tier2: Tier2State.Available) {
         else -> "Unknown"
     }
     StatRow("Over the air", overTheAir)
-
-    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-
-    StatRow(
-        "Measured throughput",
-        tier2.measuredBytesPerSecond?.let(::formatThroughput) ?: "Sampling…",
-    )
-    Text(
-        text = "Measured from the encoder's byte counter, not calculated from the " +
-            "format. This is PCM into the codec; the over-the-air figure above is what " +
-            "the radio actually carries after compression.",
-        style = MaterialTheme.typography.labelSmall,
-        modifier = Modifier.padding(top = 4.dp),
-    )
-
-    Spacer(Modifier.padding(top = 8.dp))
-    StatRow("Packets", formatPacketLoss(status.packetsExpected, status.packetsDropped))
+    StatRow("Packets (lifetime)", formatPacketLoss(status.packetsExpected, status.packetsDropped))
     status.effectiveMtuBytes?.let { StatRow("Effective MTU", "$it bytes") }
     status.isPlaying?.let { StatRow("Streaming", if (it) "Yes" else "No") }
 }

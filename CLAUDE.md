@@ -182,6 +182,22 @@ option to enable, no log-file tailing, no ACL packet reassembly. Do not reach fo
 
 Rules for this tier:
 
+- **Never poll `dumpsys` continuously. It makes Bluetooth audio audibly stutter.**
+  Confirmed on device: polling once a second produced a repeatable split-second
+  dropout on every refresh; the same build with tier 2 disabled played cleanly. The
+  dump is ~2.5 MB and takes 500-900 ms, and it cannot be narrowed — `--help`, `a2dp`,
+  `--a2dp`, `A2dpService` and `--proto` are all ignored and return the whole thing.
+
+  Nothing measurable flags this: the A2DP TxQueue dropout/underflow counters did not
+  move and logcat logged no audio warning during the test. **Only listening detects
+  it**, so do not "verify" a change here with a metric.
+
+  The design that follows: codec/format fields change only on renegotiation, so read
+  them on demand; throughput is measured over a long window with exactly two reads
+  (start and end), which is both cheaper and *more accurate* than sampling — a 60 s
+  window measured 0.4% from theory where a 1 s window managed 1.7%, because timing
+  jitter dominates at short intervals. A minute of 1 Hz polling would cost 60 dumpsys
+  calls; the benchmark costs 2.
 - Every tier 2 call site must have a tier 1 fallback. No crashes, no empty screens.
   A null parse result means "fall back", never "show zero".
 - `dumpsys` output format is undocumented and varies by OEM and Android version.

@@ -25,6 +25,27 @@ fun formatBitrateKbps(kbps: Int?): String =
 fun formatBitrateBps(bps: Int?): String =
     bps?.takeIf { it > 0 }?.let { String.format(Locale.US, "%,d kbps", it / 1000) } ?: "Unknown"
 
+fun formatBytes(bytes: Long): String {
+    val mb = bytes / 1024.0 / 1024.0
+    return if (mb < 1024) {
+        String.format(Locale.US, "%.1f MB", mb)
+    } else {
+        String.format(Locale.US, "%.2f GB", mb / 1024.0)
+    }
+}
+
+fun formatDuration(millis: Long): String =
+    String.format(Locale.US, "%.1f s", millis / 1000.0)
+
+/** LDAC's ABR mode moves during a run, so show the endpoints rather than one figure. */
+fun formatLdacRange(startKbps: Int?, endKbps: Int?): String? = when {
+    startKbps == null && endKbps == null -> null
+    startKbps == null -> formatBitrateKbps(endKbps)
+    endKbps == null -> formatBitrateKbps(startKbps)
+    startKbps == endKbps -> formatBitrateKbps(startKbps)
+    else -> "${formatBitrateKbps(startKbps)} → ${formatBitrateKbps(endKbps)}"
+}
+
 fun formatPacketLoss(expected: Long?, dropped: Long?): String {
     if (expected == null || dropped == null) return "Unknown"
     if (expected <= 0) return "$dropped dropped"
