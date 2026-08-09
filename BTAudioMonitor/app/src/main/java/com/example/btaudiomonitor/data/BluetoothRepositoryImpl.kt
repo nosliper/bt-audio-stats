@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.content.pm.PackageManager
+import android.media.AudioAttributes
 import android.media.AudioDeviceCallback
 import android.media.AudioDeviceInfo
 import android.media.AudioFormat
@@ -197,24 +198,52 @@ private fun BluetoothDevice.toConnectedDevice(profile: AudioProfile): ConnectedD
     return ConnectedDevice(address = address, name = deviceName, profile = profile, bondState = state)
 }
 
-private val BLUETOOTH_OUTPUT_TYPES = buildSet {
-    add(AudioDeviceInfo.TYPE_BLUETOOTH_A2DP)
-    add(AudioDeviceInfo.TYPE_BLUETOOTH_SCO)
-    add(AudioDeviceInfo.TYPE_BLE_HEADSET)
-    add(AudioDeviceInfo.TYPE_BLE_SPEAKER)
-    add(AudioDeviceInfo.TYPE_HEARING_AID)
-    add(AudioDeviceInfo.TYPE_BLE_BROADCAST) // API 34+; safe as a constant on API 33 too.
-}
+/**
+ * Preference order for picking a route when we have to fall back to guessing. A phone
+ * can expose several Bluetooth outputs for one physical headset — a WH-1000XM3
+ * connected on both A2DP and HFP shows up as both `bt_a2dp` and `bt_sco_hs` — and SCO
+ * is the narrowband voice channel, whose capabilities say nothing useful about music
+ * playback. Media-capable routes therefore rank first and SCO last.
+ */
+private val BLUETOOTH_OUTPUT_TYPE_PREFERENCE = listOf(
+    AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
+    AudioDeviceInfo.TYPE_BLE_HEADSET,
+    AudioDeviceInfo.TYPE_BLE_SPEAKER,
+    AudioDeviceInfo.TYPE_BLE_BROADCAST, // API 34+; safe as a constant on API 33 too.
+    AudioDeviceInfo.TYPE_HEARING_AID,
+    AudioDeviceInfo.TYPE_BLUETOOTH_SCO,
+)
 
-private fun AudioManager.findBluetoothRoute(): AudioRouteInfo? =
-    getDevices(AudioManager.GET_DEVICES_OUTPUTS)
-        .firstOrNull { it.type in BLUETOOTH_OUTPUT_TYPES }
-        ?.toAudioRouteInfo(
-            isAudioActive = isMusicActive,
-            pipelineSampleRateHz = getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
-                ?.toIntOrNull()
-                ?.takeIf { it > 0 },
-        )
+private val BLUETOOTH_OUTPUT_TYPES = BLUETOOTH_OUTPUT_TYPE_PREFERENCE.toSet()
+
+private val MEDIA_ATTRIBUTES = AudioAttributes.Builder()
+    .setUsage(AudioAttributes.USAGE_MEDIA)
+    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+    .build()
+
+private fun AudioManager.findBluetoothRoute(): AudioRouteInfo? {
+    // Ask the platform where media would actually go, rather than guessing from the
+    // full output list. getAudioDevicesForAttributes is public API as of exactly our
+    // minSdk (33). Defensive against OEM variance: fall back rather than propagate.
+    val routedForMedia = try {
+        getAudioDevicesForAttributes(MEDIA_ATTRIBUTES)
+            .firstOrNull { it.type in BLUETOOTH_OUTPUT_TYPES }
+    } catch (e: RuntimeException) {
+        null
+    }
+
+    val device = routedForMedia
+        ?: getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+            .filter { it.type in BLUETOOTH_OUTPUT_TYPES }
+            .minByOrNull { BLUETOOTH_OUTPUT_TYPE_PREFERENCE.indexOf(it.type) }
+
+    return device?.toAudioRouteInfo(
+        isAudioActive = isMusicActive,
+        pipelineSampleRateHz = getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
+            ?.toIntOrNull()
+            ?.takeIf { it > 0 },
+    )
+}
 
 private fun AudioDeviceInfo.toAudioRouteInfo(
     isAudioActive: Boolean,
