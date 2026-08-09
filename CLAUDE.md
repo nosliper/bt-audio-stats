@@ -45,6 +45,18 @@ non-SDK interface restrictions on API 31+ and produces confusing runtime behavio
 
 **There is no public per-device byte counter for Bluetooth audio.** `TrafficStats` does
 not cover A2DP or LE Audio. Real throughput is not directly readable in tier 1 (below).
+A byte counter *does* exist in `dumpsys` output — see tier 2; the constraint here is
+specifically that no **public API** exposes one.
+
+**Not every privileged permission is out of reach — check the protection level.**
+`BLUETOOTH_PRIVILEGED` is `signature|privileged` and genuinely unobtainable. But
+`android.permission.DUMP` is `signature|privileged|development`, and that
+`development` flag makes it grantable via `adb shell pm grant` to a sideloaded app.
+Before concluding that a permission is impossible, read its actual protection level:
+
+```
+adb shell dumpsys package | grep -A2 "Permission \[android.permission.X\]"
+```
 
 **The live audio format of another app's playback is redacted.** `AudioManager`'s
 `AudioPlaybackCallback` delivers `AudioPlaybackConfiguration` objects, but an
@@ -83,8 +95,8 @@ one with a poll that re-reads the state, or the UI will latch a wrong value fore
 
 ## Architecture: two tiers
 
-The app is built in two layers. Tier 1 must work standalone with Shizuku absent,
-denied, or not installed. Tier 2 is strictly additive.
+The app is built in two layers. Tier 1 must work standalone with the tier 2 permission
+ungranted, revoked, or never set up. Tier 2 is strictly additive.
 
 ### Tier 1 — unprivileged (required, always functional)
 
@@ -127,21 +139,77 @@ Two traps when computing it, both hit in practice:
 The figure is necessarily **constant while playing**. That is a property of the
 available data, not a bug to be fixed in tier 1 — do not "make it move."
 
-### Tier 2 — Shizuku (optional, degrades gracefully)
+### Tier 2 — `dumpsys` via granted DUMP (optional, degrades gracefully)
 
-Shizuku grants shell-level (adb) privileges after a one-time pairing. This unlocks:
+**This tier does not use Shizuku.** An earlier version of this document assumed it was
+required; that was wrong, and the simpler mechanism below is verified working on both
+dev devices.
 
-- Parsing `dumpsys bluetooth_manager` for active codec config and bitpool
-- Tailing the HCI snoop log (`btsnoop_hci.log`, requires the developer option enabled)
-  and counting ACL packet bytes — the only route to genuinely measured throughput
+`android.permission.DUMP` is declared `signature|privileged|**development**`. The
+`development` flag is the whole trick: unlike `BLUETOOTH_PRIVILEGED`, it can be granted
+to a normal sideloaded app with one command.
+
+```
+adb shell pm grant com.example.btaudiomonitor android.permission.DUMP
+```
+
+The app then runs `dumpsys bluetooth_manager` as a child process and reads its stdout.
+No Shizuku app, no binder/AIDL plumbing, no dependency, and the grant **survives
+reboot** (Shizuku does not, on a non-rooted device). It is lost only on uninstall, which
+is one command to redo. Verified end to end with a control: without the grant the read
+fails; with it the app read ~2.5 MB in-process and parsed the live codec. SELinux does
+not block it.
+
+Declaring `DUMP` in the manifest is inert until someone runs that command, so tier 1
+behaves identically whether it is granted or not.
+
+What this unlocks — none of it reachable in tier 1:
+
+- The **actual negotiated codec** and its rate/depth/channel mode, from `mCodecConfig`.
+  This is the thing `getCodecStatus()` would have given us.
+- The **real over-the-air bitrate**: `LDAC transmission bitrate (Kbps)` (330/660/990,
+  and it genuinely varies in ABR mode), or `Current encoder bitrate` for AAC.
+- **Genuinely measured throughput.** `PCM read bytes (expected/actual)` is a monotonic
+  byte counter; sample it twice and divide by elapsed time. Validated at 0.4% error on
+  Android 13 (AAC 44.1/16) and 0.5% on Android 16 (LDAC 96/32).
+- `Packet counts (expected/dropped)` for link quality, `Effective MTU`, and a
+  per-device `mIsPlaying` that is strictly better than tier 1's system-wide
+  `isMusicActive()`.
+
+**The HCI snoop log is not needed.** The byte counter above supersedes it: no developer
+option to enable, no log-file tailing, no ACL packet reassembly. Do not reach for
+`btsnoop_hci.log` unless something specifically requires per-packet detail.
 
 Rules for this tier:
 
-- Every Shizuku call site must have a tier 1 fallback. No crashes, no empty screens.
+- Every tier 2 call site must have a tier 1 fallback. No crashes, no empty screens.
+  A null parse result means "fall back", never "show zero".
 - `dumpsys` output format is undocumented and varies by OEM and Android version.
   Parse defensively: never assume field order, never assume a field exists, always
   handle a total parse failure by falling back to tier 1 values.
-- Do not make Shizuku a compile-time hard dependency of tier 1 modules.
+- Keep the parser a pure function of a `String` with no Android dependencies, so it
+  stays unit-testable against captured fixtures. Fixtures live in
+  `app/src/test/resources/`; there is one per Android version, MACs redacted to
+  *distinct* placeholders so multi-device selection stays testable.
+- Capture new fixtures **with a device connected and audio playing**. A disconnected
+  capture omits the per-codec blocks entirely and will make you conclude, wrongly, that
+  a platform version dropped them.
+
+Format notes confirmed on both Android 13 (One UI 5.1) and Android 16 (One UI 8) — the
+surrounding dump differs substantially between them, but these parts do not:
+
+- `mCodecConfig` identifies the **active** codec. Read it first.
+- Per-codec `A2DP <codec> State:` blocks exist for every codec, and inactive ones hold
+  **stale, plausible-looking values** — with AAC active, LDAC still advertised
+  `Config: Rate=96000 Bits=32` beside `transmission bitrate: -1`. Only trust the block
+  matching `mCodecConfig`.
+- `-1` is an invalid sentinel, not data.
+- Several devices can be bonded at once, each with its own `mCodecConfig`. Use
+  `mActiveDevice` → `=== A2dpStateMachine for <addr> ===` to pick the right one; do not
+  rely on document order.
+- The codec set is not fixed (Samsung ships `SSC`/`SSCUHQ`) and names may contain
+  spaces (`aptX HD`). Do not enumerate codec names.
+- `A2DP Source State: Enabled` is not a codec block.
 
 ## Permissions
 
@@ -153,7 +221,18 @@ Declare exactly these. Do not add `ACCESS_FINE_LOCATION`.
     android:name="android.permission.BLUETOOTH_SCAN"
     android:usesPermissionFlags="neverForLocation" />
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+<!-- Tier 2 only. Inert until granted over adb; never auto-granted. -->
+<uses-permission
+    android:name="android.permission.DUMP"
+    tools:ignore="ProtectedPermissions" />
 ```
+
+`DUMP` cannot be granted by the user from the UI and is not requested at runtime — the
+app must behave identically without it. It exists solely so
+`adb shell pm grant … android.permission.DUMP` has something to grant. The
+`tools:ignore` suppresses lint's (correct, for normal apps) complaint about declaring a
+privileged permission.
 
 The `neverForLocation` flag is what lets us skip the location permission. Legacy
 `BLUETOOTH` / `BLUETOOTH_ADMIN` are not needed at `minSdk` 33 — do not add them back.
@@ -182,7 +261,9 @@ service — not as a speculative fix.
 
 ## Things not to do
 
-- Do not suggest `getCodecStatus()` as a solution. See the hard constraints section.
+- Do not suggest `getCodecStatus()` as a solution — it needs `BLUETOOTH_PRIVILEGED` and
+  is dead code here. The data it would return *is* available: parse `mCodecConfig` from
+  `dumpsys` in tier 2 instead.
 - Do not add a dependency to solve something the platform SDK already does.
 - Do not add analytics, crash reporting, or any network calls. This app makes zero
   network requests.

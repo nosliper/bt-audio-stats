@@ -7,6 +7,16 @@
         android:name="android.permission.BLUETOOTH_SCAN"
         android:usesPermissionFlags="neverForLocation" />
 
+    <!--
+      Tier 2 only, and never auto-granted. DUMP is signature|privileged|development;
+      the development flag makes it grantable via `adb shell pm grant`, unlike
+      BLUETOOTH_PRIVILEGED. Declaring it is inert until someone runs that command, so
+      tier 1 is unaffected whether it is granted or not.
+    -->
+    <uses-permission
+        android:name="android.permission.DUMP"
+        tools:ignore="ProtectedPermissions" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

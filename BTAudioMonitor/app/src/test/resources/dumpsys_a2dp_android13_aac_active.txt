@@ -1,0 +1,457 @@
+  Clients    : [6, 7]
+  Servers    : []
+
+Profile: A2dpService
+  mActiveDevice: AABBCC_X
+  mMaxConnectedAudioDevices: 2
+  codecConfigPriorities:
+    SBC: 1001
+    AAC: 2001
+    aptX: 3001
+    aptX HD: -1
+    LDAC: 5001
+    LC3: 6001
+    SSC: 7001
+    SSCUHQ: 0
+  mA2dpOffloadEnabled: true
+  codecConfigOffloading:
+  mNotifiedConnectedDevices:
+    AABBCC_X
+  mDualPlayMode: false
+  === A2dpStateMachine for AABBCC_X ===
+    getConnectionPolicy: 100
+    mConnectionState: CONNECTED, mLastConnectionState: CONNECTING
+    mIsPlaying: false
+    mDelayReport: 330
+    getSupportsOptionalCodecs: 1, getOptionalCodecsEnabled: 1
+    mCodecConfig: {codecName:AAC,mCodecType:1,mCodecPriority:1000000,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x2(STEREO),mCodecSpecific1:133,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    mCodecsSelectableCapabilities:
+      {codecName:AAC,mCodecType:1,mCodecPriority:2001,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x2(STEREO),mCodecSpecific1:133,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+      {codecName:LDAC,mCodecType:4,mCodecPriority:5001,mSampleRate:0xf(44100|48000|88200|96000),mBitsPerSample:0x7(16|24|32),mChannelMode:0x2(STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+      {codecName:aptX,mCodecType:2,mCodecPriority:3001,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x2(STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+      {codecName:SBC,mCodecType:0,mCodecPriority:1001,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x3(MONO|STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    StateMachine: name=A2dpStateMachine state=Connected
+    StateMachineLog:
+      A2dpStateMachine:
+       total records=45
+       rec[0]: time=08-09 11:59:37.215 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:48}
+       rec[1]: time=08-09 11:59:45.952 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:48}
+       rec[2]: time=08-09 11:59:45.953 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:48}
+       rec[3]: time=08-09 11:59:46.157 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:AABBCC_X, value1:STARTED}
+       rec[4]: time=08-09 11:59:53.647 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:AABBCC_X, value1:STOPPED}
+       rec[5]: time=08-09 12:01:41.841 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[6]: time=08-09 12:01:41.845 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[7]: time=08-09 12:01:41.847 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[8]: time=08-09 12:01:41.849 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[9]: time=08-09 12:01:42.120 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_DELAY_REPORTED, device:AABBCC_X, value1:3300}
+       rec[10]: time=08-09 12:01:42.172 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[11]: time=08-09 12:01:42.174 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[12]: time=08-09 12:05:04.572 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[13]: time=08-09 12:05:04.574 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[14]: time=08-09 12:05:04.669 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:AABBCC_X, value1:STARTED}
+       rec[15]: time=08-09 12:05:09.605 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:AABBCC_X, value1:STOPPED}
+       rec[16]: time=08-09 12:05:10.146 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[17]: time=08-09 12:05:10.147 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:AABBCC_X, value1:2}
+       rec[18]: time=08-09 12:05:10.175 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:AABBCC_X, value1:STARTED}
+       rec[19]: time=08-09 12:05:24.316 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:AABBCC_X, value1:STOPPED}
+      curState=Connected
+
+Profile: AvrcpTargetService:
+  AVRCP version: 1.6
+  List of MediaControllers: size=1
+  <Active>   Media Player 1: com.google.android.apps.youtube.music
+    MediaController (com.google.android.apps.youtube.music@82af381) Neon Drift, Wizhum, Wizhum
+    Current Data:
+      Song: { mediaId="" title="Neon Drift" artist="Wizhum" album="" duration=174869" genre="" trackPosition=1/1 image=<Image source=2> }
+      PlayState: PlaybackState {state=PAUSED(2), position=8666, buffered position=0, speed=1.0, updated=1610425470, actions=2600887, custom actions=[Action:mName='Marcar como Gostei, mIcon=2131233457, mExtras=null, Action:mName='Modo aleatório desativado, mIcon=2131232821, mExtras=null, Action:mName='Repetir desativado, mIcon=2131232723, mExtras=null, Action:mName='Não gostei, mIcon=2131233453, mExtras=null], active item id=37, error=null}
+      Queue: size=1
+        { mediaId="" title="Neon Drift" artist="Wizhum" album="" duration=174869" genre="" trackPosition=1/1 image=<Image source=2> }
+  
+  List of Browsers: size=0
+  BTAudio Active Player Events:
+    08-09 11:52:31.625 setActivePlayer(): setting player to com.google.android.apps.youtube.music
+  
+  BTAudio Audio Playback State Events:
+  
+  BTAudio Media Key Events:
+    08-09 11:52:57.404 getMediaKeyEvent: device=AABBCC_X event=68 pushed=true to com.google.android.apps.youtube.music
+    08-09 11:52:57.421 getMediaKeyEvent: device=AABBCC_X event=68 pushed=false to com.google.android.apps.youtube.music
+    08-09 11:53:00.345 getMediaKeyEvent: device=AABBCC_X event=70 pushed=true to com.google.android.apps.youtube.music
+    08-09 11:53:00.420 getMediaKeyEvent: device=AABBCC_X event=70 pushed=false to com.google.android.apps.youtube.music
+    08-09 11:59:45.689 getMediaKeyEvent: device=AABBCC_X event=68 pushed=true to com.google.android.apps.youtube.music
+    08-09 11:59:45.703 getMediaKeyEvent: device=AABBCC_X event=68 pushed=false to com.google.android.apps.youtube.music
+    08-09 11:59:50.578 getMediaKeyEvent: device=AABBCC_X event=70 pushed=true to com.google.android.apps.youtube.music
+    08-09 11:59:50.666 getMediaKeyEvent: device=AABBCC_X event=70 pushed=false to com.google.android.apps.youtube.music
+    08-09 12:05:04.486 getMediaKeyEvent: device=AABBCC_X event=68 pushed=true to com.google.android.apps.youtube.music
+    08-09 12:05:04.522 getMediaKeyEvent: device=AABBCC_X event=68 pushed=false to com.google.android.apps.youtube.music
+    08-09 12:05:06.504 getMediaKeyEvent: device=AABBCC_X event=70 pushed=true to com.google.android.apps.youtube.music
+    08-09 12:05:06.519 getMediaKeyEvent: device=AABBCC_X event=70 pushed=false to com.google.android.apps.youtube.music
+    08-09 12:05:10.101 getMediaKeyEvent: device=AABBCC_X event=68 pushed=true to com.google.android.apps.youtube.music
+    08-09 12:05:10.107 getMediaKeyEvent: device=AABBCC_X event=68 pushed=false to com.google.android.apps.youtube.music
+    08-09 12:05:21.196 getMediaKeyEvent: device=AABBCC_X event=70 pushed=true to com.google.android.apps.youtube.music
+    08-09 12:05:21.245 getMediaKeyEvent: device=AABBCC_X event=70 pushed=false to com.google.android.apps.youtube.music
+  
+  AvrcpVolumeManager:
+    mCurrentDevice: AABBCC_X
+    Current System Volume: 59
+    Device Volume Memory Map:
+      Device Address    : Device Name    : Vol : AbsVol
+      F8665A_9          : Beats Fit P... :  80 : true
+      AABBCC_X          : WH-1000XM3     :  59 : true
+      5CFB7C_8          : JBL Flip 4     :  40 : true
+    BTAudio Volume Events:
+      08-09 11:52:37.639 AABBCC_X - 56 (init)
+      08-09 11:52:37.640 AABBCC_X - 59 (reset)
+      08-09 11:52:37.641 AABBCC_X - 59 (changed)
+      08-09 11:52:37.862 AABBCC_X - 59 (switch)
+      08-09 11:59:37.466 AABBCC_X - 59 (switch)
+      08-09 11:59:40.835 AABBCC_X - 56 (init)
+      08-09 11:59:40.836 AABBCC_X - 59 (reset)
+      08-09 11:59:40.837 AABBCC_X - 59 (changed)
+      08-09 12:01:42.072 AABBCC_X - 59 (switch)
+  
+  AvrcpCoverArtService:
+  	psm = 4097
+  	images (0 / 32):
+  		Handle   : Hash                              : CoverArt
+  	Image bytes: 0
+  	clients = []
+
+  Volume control:
+
+  CoverArt is not allowed: false
+
+Profile: HeadsetService
+  mMaxHeadsetConnections: 3
+  DefaultMaxHeadsetConnections: 3
+  mActiveDevice: XX:XX:XX:XX:XX:XX
+  isInbandRingingEnabled: true
+  isInbandRingingSupported: true
+  mInbandRingingRuntimeDisable: false
+  mIsSupportVcHandling: false
+  mAudioRouteAllowed: true
+  mVoiceRecognitionStarted: false
+  mVoiceRecognitionTimeoutEvent: null
+  mVirtualCallStarted: false
+  mDialingOutTimeoutEvent: null
+  mForceScoAudio: false
+  mCreated: true
+  mStarted: true
+  AudioManager.isBluetoothScoOn(): false
+  Telecom.isInCall(): false
+  Telecom.isRinging(): false
+  HFSM size : 1
+  mHighPriorityDevice : AABBCC_X
+  PhoneState : 0,6,1,4,0,5,0
+  mIsConnectWhileRinging: false
+  ==== StateMachine for XX:XX:XX:XX:XX:XX ====
+    mCurrentDevice: XX:XX:XX:XX:XX:XX
+    mIsWatch: false
+    mDeviceSilenced: false
+    mHeadsetBssf: 0
+    mHeadsetBrsf: 665
+    mCurrentState: Connected
+    mPrevState: Connecting
+    mConnectionState: 2
+    mAudioState: 10
+    mNeedDialingOutReply: false
+    mSpeakerVolume: 0
+    mMicVolume: 0
+    mConnectingTimestampMs(uptimeMillis): 158283030
+    mInbandRingtoneSupport: true
+    mVolumeControlSupport: true
+    mBatteryLevel: 100
+    StateMachine: name=HeadsetStateMachine state=Connected
+    StateMachineLog:
+      HeadsetStateMachine:
+       total records=44
+       rec[0]: time=08-09 11:59:36.940 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=5]
+       rec[1]: time=08-09 11:59:36.941 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_NOISE_REDUCTION[9], valInt=0, valInt2=0, valString=null, valObject=null, device=XX:XX:XX:XX:XX:XX
+       rec[2]: time=08-09 11:59:36.986 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_UNKNOWN_AT[15], valInt=0, valInt2=0, valString=+XAPL=054C-0C93-0452,10, valObject=null, device=XX:XX:XX:XX:XX:XX
+       rec[3]: time=08-09 11:59:36.998 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_UNKNOWN_AT[15], valInt=0, valInt2=0, valString=+IPHONEACCEV=1,1,9, valObject=null, device=XX:XX:XX:XX:XX:XX
+       rec[4]: time=08-09 11:59:37.012 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_UNKNOWN_AT[15], valInt=0, valInt2=0, valString=+APLSIRI?, valObject=null, device=XX:XX:XX:XX:XX:XX
+       rec[5]: time=08-09 11:59:37.912 processed=Connected org=Connected dest=<null> what=321(0x141) SEND_MESSAGE_TO_HEADSET: arg1=0, arg2=0, obj=com.samsung.bt.hfp.vsc.VendorSpecificCommandVO@85c3408
+       rec[6]: time=08-09 11:59:49.148 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=5]
+       rec[7]: time=08-09 11:59:58.562 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=5]
+       rec[8]: time=08-09 12:00:10.334 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=5]
+       rec[9]: time=08-09 12:00:23.510 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=5]
+       rec[10]: time=08-09 12:01:32.724 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=5]
+       rec[11]: time=08-09 12:02:10.384 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=5]
+       rec[12]: time=08-09 12:02:43.327 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=5]
+       rec[13]: time=08-09 12:03:08.287 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=5]
+       rec[14]: time=08-09 12:03:39.831 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=5]
+       rec[15]: time=08-09 12:04:05.725 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=5]
+       rec[16]: time=08-09 12:04:31.613 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=5]
+       rec[17]: time=08-09 12:05:03.976 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=5]
+       rec[18]: time=08-09 12:05:34.220 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=5]
+       rec[19]: time=08-09 12:05:58.235 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=5]
+      curState=Connected
+
+  SCO volume history
+   - AABBCC_X : 7
+
+  VS ATC history
+   2026/08/09 11:50:04  AABBCC_X  AT+XAPL=054C-0C93-0452,10
+   2026/08/09 11:50:04  AABBCC_X  AT+IPHONEACCEV=1,1,9
+   2026/08/09 11:51:03  AABBCC_X  AT+XAPL=054C-0C93-0452,10
+   2026/08/09 11:51:03  AABBCC_X  AT+IPHONEACCEV=1,1,9
+   2026/08/09 11:52:44  AABBCC_X  AT+XAPL=054C-0C93-0452,10
+   2026/08/09 11:52:44  AABBCC_X  AT+IPHONEACCEV=1,1,9
+   2026/08/09 11:59:36  AABBCC_X  AT+XAPL=054C-0C93-0452,10
+   2026/08/09 11:59:36  AABBCC_X  AT+IPHONEACCEV=1,1,9
+
+  Disconnected Call history
+
+Profile: HearingAidService
+
+Profile: HidDeviceService
+
+Profile: HidHostService
+  mTargetDevice: null
+  mInputDevices:
+
+Profile: BluetoothMapService
+  mRemoteDevice: null
+  sRemoteDeviceName: null
+  mMnsProfileVersion: unknown
+  mConfigNetworkTypeCapability: null
+  mSmsCapable: true
+  mSdpSearchInitiated: false
+  mState: 0
+  mAppObserver: com.android.bluetooth.map.BluetoothMapAppObserver@31246bd
+  mIsWaitingAuthorization: false
+  mRemoveTimeoutMsg: false
+  mPermission: 0
+  mAccountChanged: false
+  mBluetoothMnsObexClient: null
+  mMasInstanceMap:
+    : MasId: 0 Uri:null SMS/MMS:true Socket started: false
+  MAP Device information
+  OUI            Name                          Channel   MTU       MPL       Version   Support   Msg Type  L param   Trans     Retry     Charset   
+
+  Event Report history
+
+  Push Message history
+
+  Message Query history
+
+Profile: BluetoothOppService
+
+Profile: PanService
+  mMaxPanDevices: 5
+  mPanIfName: bt-pan
+  mTetherOn: false
+  mPanDevices:
+
+Profile: BluetoothPbapService
+  Stored Phonebook : 342/349
+
+  Last Sent Max MyProfile Property
+    ADR : 0,    EMAIL : 0,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 0
+    TITLE : 0,    PHOTO : 0,    URL : 0,    BDAY : 0,    NICKNAME : 0,    SORT-STRING : 0
+
+  Last Sent Max Phonebook Property
+   v96154 from 2024/06/26 15:39:59
+    ADR : 0,    EMAIL : 0,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 4
+    TITLE : 0,    PHOTO : 1,    URL : 0,    BDAY : 0,    NICKNAME : 0,    SORT-STRING : 0
+
+  Sented Max Property history
+
+  PBAP Device information
+  OUI            Name                          Channel   MTU       MPL       Support        P Selector     V Selector     Type      Form      Repo
+
+  PBAP Operation history
+
+  PBAP Setting history
+   2026/08/09 11:49:59  V12, TEL_99 ETC_02 PIC_01
+   2026/08/09 11:52:31  V12, TEL_99 ETC_02 PIC_01
+
+  PBAP onChange history
+   - 2026/08/09 11:49:59 ~ 2026/08/09 11:52:27 : 1
+   - 2026/08/09 11:52:31 ~ 2026/08/09 12:06:07 : 1
+   2026/08/09 11:49:59  INT : 348
+   2026/08/09 11:52:31  INT : 348
+
+Profile: SapService
+
+Connection Events:
+  08-09 11:52:31.401 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:52:31.401 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:52:31.400 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:52:31.400 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:50:24.345 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:50:24.345 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:50:24.345 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:50:24.345 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:50:24.345 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:50:23.352 CONNECTED    XX:XX:XX:XX:XX:XX
+  08-09 11:50:21.827 DISCONNECTED XX:XX:XX:XX:XX:XX reason=0
+  08-09 11:50:21.827 DISCONNECTED XX:XX:XX:XX:XX:XX reason=0
+  08-09 11:50:21.827 DISCONNECTED XX:XX:XX:XX:XX:XX reason=0
+  08-09 11:50:21.827 DISCONNECTED XX:XX:XX:XX:XX:XX reason=0
+  08-09 11:50:21.827 DISCONNECTED XX:XX:XX:XX:XX:XX reason=0
+  08-09 11:50:16.819 CONNECTED    XX:XX:XX:XX:XX:XX
+
+Bond Events: 
+  Total Number of events: 0
+
+Link Key Types:
+  XX:XX:XX:XX:XX:XX
+    BR: UNAUTH_COMB
+    LE:
+  XX:XX:XX:XX:XX:XX
+    BR: UNAUTH_COMB
+    LE:
+  XX:XX:XX:XX:XX:XX
+    BR: AUTH_COMB_P_256
+    LE: PENC PID PCSRK LENC LCSRK LID
+  XX:XX:XX:XX:XX:XX
+    BR: AUTH_COMB_P_256
+    LE:
+  XX:XX:XX:XX:XX:XX
+    BR: UNAUTH_COMB
+    LE:
+
+HFAG SM event:
+  [0] 08-09 11:52:43:854 | 38184c_e |  0 | 1 < BTA_AG_DISC_INT_RES_EVT(1295)
+  [0] 08-09 11:52:43:854 | 38184c_e |  0 | 1 < BTA_AG_DISC_OK_EVT(1296)
+  [0] 08-09 11:52:43:898 | 38184c_e | 14 | 1 < BTA_AG_RFC_OPEN_EVT(1288)
+  [0] 08-09 11:52:43:922 | 38184c_e | 14 | 2 < BTA_AG_API_SETCODEC_EVT(1287)
+  [0] 08-09 11:54:47:005 | 38184c_e | 14 | 2 < BTA_AG_RFC_CLOSE_EVT(1289)
+  [0] 08-09 11:59:34:318 | 000000_0 |  0 | 0 < BTA_AG_API_OPEN_EVT(1282)
+  [0] 08-09 11:59:36:689 | 38184c_e |  0 | 1 < BTA_AG_DISC_INT_RES_EVT(1295)
+  [0] 08-09 11:59:36:689 | 38184c_e |  0 | 1 < BTA_AG_DISC_OK_EVT(1296)
+  [0] 08-09 11:59:36:824 | 38184c_e | 18 | 1 < BTA_AG_RFC_OPEN_EVT(1288)
+  [0] 08-09 11:59:36:850 | 38184c_e | 18 | 2 < BTA_AG_API_SETCODEC_EVT(1287)
+  [1] 08-09 11:49:58:848 | 000000_0 |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [1] 08-09 11:52:26:276 | 000000_0 |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [1] 08-09 11:52:31:388 | 000000_0 |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [2] 08-09 11:49:58:849 | 000000_0 |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [2] 08-09 11:52:26:276 | 000000_0 |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [2] 08-09 11:52:31:388 | 000000_0 |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [3] 08-09 11:49:58:849 | 000000_0 |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [3] 08-09 11:52:26:276 | 000000_0 |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [3] 08-09 11:52:31:388 | 000000_0 |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [4] None
+  [5] None
+
+HFSCO Call result event and post sco:
+  None
+
+HFSCO SCO event:
+         Time        |           State          <          Event
+  08-09 11:50:03:955 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 11:50:54:926 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 11:50:54:980 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 11:51:03:226 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 11:52:26:276 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 11:52:43:900 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 11:54:47:006 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 11:59:36:826 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+
+HFSCO DBFW+ info:
+  None
+
+A2DP State:
+  TxQueue:
+  Counts (enqueue/dequeue/readbuf)                        : 2278 / 1279 / 3553
+  Last update time ago in ms (enqueue/dequeue/readbuf)    : 0 / 0 / 0
+  Frames per packet (total/max/ave)                       : 4009 / 12 / 1
+  Counts (flushed/dropped/dropouts)                       : 0 / 0 / 0
+  Counts (max dropped)                                    : 0
+  Last update time ago in ms (flushed/dropped)            : 0 / 0
+  Counts (underflow)                                      : 8
+  Bytes (underflow)                                       : 17124
+  Last update time ago in ms (underflow)                  : 0
+  Enqueue deviation counts (overdue/premature)            : 1110 / 1145
+  Enqueue overdue scheduling time in ms (total/max/ave)   : 104 / 13 / 0
+  Enqueue premature scheduling time in ms (total/max/ave) : 89 / 1 / 0
+  Dequeue deviation counts (overdue/premature)            : 984 / 291
+  Dequeue overdue scheduling time in ms (total/max/ave)   : 10836 / 22 / 11
+  Dequeue premature scheduling time in ms (total/max/ave) : 1926 / 19 / 6
+
+  SS info:
+  alf : 1 alf_ddb : 0 dm_level : 3
+  timer diff : 30ms 0(0), 50ms 0(0), 200ms 1(1)
+  is_dual_play : 0 [1] hndl : 0 stream : 0 gain 0.000000 [2] hndl : 0 stream : 0 gain 0.000000 
+  keep_dual_playing : 0
+
+A2DP AAC State:
+  Priority: 1000000
+  Config: Rate=44100 Bits=16 Mode=STEREO
+  Selectable: Rate=44100 Bits=16 Mode=STEREO
+  Local capability: Rate=44100 Bits=16 Mode=STEREO
+  AAC bitrate mode                                        : Variable (0x85)
+  Variable bitrate enabled : 1
+  CBR with alf supported : 1
+  Bitrate mode : 5
+  Audio object type : 2
+  AudioMuxVersion : 2
+  Signaling mode of the extension AOT : 1
+  Audio input data sampling rate : 44100
+  Current encoder bitrate : 302842
+  Origin encoder bitrate : 302842
+  Peak bitrate : 302842
+  Channel mode : 2
+  Transport type : 6
+  Frame count period : 1
+  Encoder interval (ms): 10
+  Effective MTU: 879
+  Packet counts (expected/dropped)                        : 608 / 0
+  PCM read counts (expected/actual)                       : 608 / 608
+  PCM read bytes (expected/actual)                        : 2490368 / 2487296
+
+A2DP SSC State:
+  Priority: 7001
+  Config: Invalid
+  Selectable: Invalid
+  Local capability: Rate=44100|48000 Bits=16|24 Mode=STEREO
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+
+A2DP LDAC State:
+  Priority: 5001
+  Config: Rate=96000 Bits=32 Mode=STEREO
+  Selectable: Rate=44100|48000|88200|96000 Bits=16|24|32 Mode=STEREO
+  Local capability: Rate=44100|48000|88200|96000 Bits=16|24|32 Mode=STEREO
+  LDAC quality mode                                       : HIGH
+  LDAC transmission bitrate (Kbps)                        : -1
+  LDAC saved transmit queue length                        : 0
+  Encoder interval (ms): 20
+  Effective MTU: 0
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+
+A2DP aptX State:
+  Priority: 3001
+  Config: Invalid
+  Selectable: Rate=44100 Bits=16 Mode=STEREO
+  Local capability: Rate=44100 Bits=16 Mode=STEREO
+  Encoder interval (ms): 0
+  Effective MTU: 0
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+
+A2DP SBC State:
+  Priority: 1001
+  Config: Invalid
+  Selectable: Rate=44100 Bits=16 Mode=MONO|STEREO
+  Local capability: Rate=44100 Bits=16 Mode=MONO|STEREO
+  Encoder interval (ms): 10
+  Effective MTU: 0
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+  Frames counts (expected/dropped)                        : 0 / 0
+  is_dual_play : 0 
+
+A2DP Source State: Enabled
+  dual_play_mode: 0
+  Active peer: 38184c_e
+  Peer: 38184c_e
+    Connected: true
+    Streaming: false
+    SEP: 1(Sink)

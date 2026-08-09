@@ -1,0 +1,1656 @@
+      100: [132]   Characteristic 00002b51-0000-1000-8000-00805f9b34fb
+      102: [154] Service 0000fcf1-0000-1000-8000-00805f9b34fb, started true
+      102: [156]   Characteristic fe2c1237-8366-4814-8eb0-01de32100bea
+      102: [157]     Descriptor 00002902-0000-1000-8000-00805f9b34fb
+      102: [158] Service 0000fef3-0000-1000-8000-00805f9b34fb, started true
+      102: [160]   Characteristic 00000100-0004-1000-8000-001a11000102
+      102: [161]     Descriptor 00002902-0000-1000-8000-00805f9b34fb
+      102: [163]   Characteristic 00000100-0004-1000-8000-001a11000101
+  Requests: 0
+
+Profile: A2dpService
+  mActiveDevice: DE:VI:CE:00:00:00
+  mMaxConnectedAudioDevices: 2
+  codecConfigPriorities:
+    SBC: 1001
+    AAC: 2001
+    aptX: 3001
+    aptX HD: -1
+    LDAC: 5001
+    INVALID CODEC: -1
+    Opus: -1
+    SSC: 8001
+    INVALID CODEC: 0
+  mA2dpOffloadEnabled: true
+  codecConfigOffloading:
+    {codecName:SBC,mCodecType:0,mCodecPriority:1001,mSampleRate:0x0(NONE),mBitsPerSample:0x0(NONE),mChannelMode:0x0(NONE),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    {codecName:aptX,mCodecType:2,mCodecPriority:3001,mSampleRate:0x0(NONE),mBitsPerSample:0x0(NONE),mChannelMode:0x0(NONE),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    {codecName:SSC,mCodecType:7,mCodecPriority:8001,mSampleRate:0x0(NONE),mBitsPerSample:0x0(NONE),mChannelMode:0x0(NONE),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    null
+    null
+    null
+    null
+    null
+    null
+  mDualPlayMode: false
+  Supported A2DP SINK: true
+  === A2dpStateMachine for DE:VI:CE:00:00:00 (Active) ===
+    getConnectionPolicy: 100
+    mConnectionState: STATE_CONNECTED, mLastConnectionState: STATE_CONNECTING
+    mIsPlaying: true
+    mDelayReport: 330
+    getSupportsOptionalCodecs: 1, getOptionalCodecsEnabled: 1
+    mCodecConfig: {codecName:LDAC,mCodecType:4,mCodecPriority:1000000,mSampleRate:0x8(96000),mBitsPerSample:0x4(32),mChannelMode:0x2(STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    mCodecsSelectableCapabilities:
+      {codecName:LDAC,mCodecType:4,mCodecPriority:5001,mSampleRate:0xf(44100|48000|88200|96000),mBitsPerSample:0x7(16|24|32),mChannelMode:0x2(STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+      {codecName:aptX,mCodecType:2,mCodecPriority:3001,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x2(STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+      {codecName:AAC,mCodecType:1,mCodecPriority:2001,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x2(STEREO),mCodecSpecific1:133,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+      {codecName:SBC,mCodecType:0,mCodecPriority:1001,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x3(MONO|STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    StateMachine: name=A2dpStateMachine state=Connected
+    StateMachineLog:
+      A2dpStateMachine:
+       total records=13
+       rec[0]: time=08-09 14:11:06.958 processed=Disconnected org=Disconnected dest=Connecting what=1(0x1) CONNECT: arg1=0, arg2=0, obj=null
+       rec[1]: time=08-09 14:11:06.989 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:00, value1:STATE_CONNECTING}
+       rec[2]: time=08-09 14:11:09.990 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:00, value1:64}
+       rec[3]: time=08-09 14:11:09.992 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_GETCAP_DONE, device:DE:VI:CE:00:00:00, value1:106}
+       rec[4]: time=08-09 14:11:10.008 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_DELAY_REPORTED, device:DE:VI:CE:00:00:00, value1:3300}
+       rec[5]: time=08-09 14:11:10.075 processed=Connecting org=Connecting dest=Connected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:00, value1:STATE_CONNECTED}
+       rec[6]: time=08-09 14:11:10.099 processed=Connected org=Connected dest=<null> what=301(0x12d) ENABLE_LDAC: arg1=0, arg2=0, obj=null
+       rec[7]: time=08-09 14:11:10.123 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:00, value1:64}
+       rec[8]: time=08-09 14:11:10.132 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:00, value1:64}
+       rec[9]: time=08-09 14:11:10.139 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:00, value1:64}
+       rec[10]: time=08-09 14:12:39.588 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:00, value1:64}
+       rec[11]: time=08-09 14:12:39.591 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:00, value1:64}
+       rec[12]: time=08-09 14:12:39.623 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:DE:VI:CE:00:00:00, value1:STARTED}
+      curState=Connected
+  === A2dpStateMachine for DE:VI:CE:00:00:01 ===
+    getConnectionPolicy: 100
+    mConnectionState: STATE_DISCONNECTED, mLastConnectionState: STATE_DISCONNECTING
+    mIsPlaying: false
+    mDelayReport: 0
+    getSupportsOptionalCodecs: 0, getOptionalCodecsEnabled: -1
+    mCodecConfig: {codecName:SBC,mCodecType:0,mCodecPriority:100000,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x2(STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    mCodecsSelectableCapabilities:
+      {codecName:SBC,mCodecType:0,mCodecPriority:1001,mSampleRate:0x1(44100),mBitsPerSample:0x1(16),mChannelMode:0x3(MONO|STEREO),mCodecSpecific1:0,mCodecSpecific2:0,mCodecSpecific3:0,mCodecSpecific4:0}
+    StateMachine: name=A2dpStateMachine state=Disconnected
+    StateMachineLog:
+      A2dpStateMachine:
+       total records=30
+       rec[0]: time=08-09 12:43:21.260 processed=Connected org=Connected dest=Disconnecting what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_DISCONNECTING}
+       rec[1]: time=08-09 12:43:21.264 processed=Disconnecting org=Disconnecting dest=Disconnected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_DISCONNECTED}
+       rec[2]: time=08-09 12:51:10.767 processed=Disconnected org=Disconnected dest=Connecting what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_CONNECTING}
+       rec[3]: time=08-09 12:51:10.891 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:01, value1:0}
+       rec[4]: time=08-09 12:51:10.901 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_DELAY_REPORTED, device:DE:VI:CE:00:00:01, value1:2200}
+       rec[5]: time=08-09 12:51:10.959 processed=Connecting org=Connecting dest=Connected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_CONNECTED}
+       rec[6]: time=08-09 12:51:10.977 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_GETCAP_DONE, device:DE:VI:CE:00:00:01, value1:0}
+       rec[7]: time=08-09 12:51:11.002 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:01, value1:0}
+       rec[8]: time=08-09 12:51:11.014 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:01, value1:0}
+       rec[9]: time=08-09 12:51:20.870 processed=Connected org=Connected dest=Disconnecting what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_DISCONNECTING}
+       rec[10]: time=08-09 12:51:20.873 processed=Disconnecting org=Disconnecting dest=Disconnected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_DISCONNECTED}
+       rec[11]: time=08-09 12:56:42.792 processed=Disconnected org=Disconnected dest=Connecting what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_CONNECTING}
+       rec[12]: time=08-09 12:56:42.857 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:01, value1:0}
+       rec[13]: time=08-09 12:56:42.886 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_AUDIO_DELAY_REPORTED, device:DE:VI:CE:00:00:01, value1:2200}
+       rec[14]: time=08-09 12:56:42.926 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_GETCAP_DONE, device:DE:VI:CE:00:00:01, value1:0}
+       rec[15]: time=08-09 12:56:42.938 processed=Connecting org=Connecting dest=Connected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_CONNECTED}
+       rec[16]: time=08-09 12:56:43.122 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:01, value1:0}
+       rec[17]: time=08-09 12:56:43.165 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CODEC_CONFIG_CHANGED, device:DE:VI:CE:00:00:01, value1:0}
+       rec[18]: time=08-09 12:56:58.550 processed=Connected org=Connected dest=Disconnecting what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_DISCONNECTING}
+       rec[19]: time=08-09 12:56:58.555 processed=Disconnecting org=Disconnecting dest=Disconnected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=A2dpStackEvent {type:EVENT_TYPE_CONNECTION_STATE_CHANGED, device:DE:VI:CE:00:00:01, value1:STATE_DISCONNECTED}
+      curState=Disconnected
+
+Profile: AvrcpTargetService:
+  AVRCP version: 1.6
+  List of MediaControllers: size=1
+  <Active>   Media Player 1: com.aspiro.tidal
+    MediaController (com.aspiro.tidal@fefff33) This Thing We Got, The Kite String Tangle, The Kite String Tangle
+    Current Data:
+      Song: { mediaId="NowPlayingId0" title="This Thing We Got" artist="The Kite String Tangle" album="The Kite String Tangle" genre="" duration=227000" genre= trackPosition=1/1 image=<Image source=2> }
+      PlayState: PlaybackState {state=PLAYING(3), position=31497, buffered position=0, speed=1.0, updated=620216822, actions=207667, custom actions=[Action:mName='Remover de Minha coleção, mIcon=2131231355, mExtras=null, Action:mName='Aleatório, mIcon=2131231953, mExtras=null, Action:mName='Repetir, mIcon=2131231874, mExtras=null, Action:mName='Ir para rádio da música, mIcon=2131231861, mExtras=Bundle[mParcelledData.dataSize=104]], active item id=377605004, error=null}
+      Queue: size=1
+        { mediaId="Empty" title="Not Provided" artist="" album="" genre="" duration=0" genre= trackPosition=1/1 image=null }
+    BTAudio Playback State change Event:
+      08-09 14:12:39.569 state: 3, pos: 31481, id: 377605004
+  
+  List of Browsers: size=0
+  BTAudio Active Player Events:
+    08-09 12:36:00.045 setActivePlayer(): setting player to com.aspiro.tidal
+    08-09 14:12:37.660 setActivePlayer(): setting player to com.aspiro.tidal
+  
+  BTAudio Audio Playback State Events:
+  
+  BTAudio Media Key Events:
+  
+  AvrcpVolumeManager:
+    mCurrentDevice: DE:VI:CE:00:00:00
+    Current System Volume: -1
+    Device Volume Memory Map:
+      Device Address    : Device Name    : Vol : AbsVol
+      DE:VI:CE:00:00:02 : Beats Fit P... : 110 : true
+      DE:VI:CE:00:00:03 : WH-1000XM3     :  59 : true
+    BTAudio Volume Events:
+      08-09 14:11:10.093 storeVolume: Storing stream volume level for device DE:VI:CE:00:00:00 : 79
+      08-09 14:11:10.094 DE:VI:CE:00:00:00 - 79 (switch)
+      08-09 14:11:10.325 DE:VI:CE:00:00:00 - 79 (switch)
+      08-09 14:11:10.944 DE:VI:CE:00:00:00 - 79 (set)
+      08-09 14:11:13.952 DE:VI:CE:00:00:00 - 56 (init)
+      08-09 14:11:13.952 DE:VI:CE:00:00:00 - 79 (reset)
+      08-09 14:11:13.952 DE:VI:CE:00:00:00 - 79 (changed)
+      08-09 14:11:13.966 DE:VI:CE:00:00:00 - 79 (set)
+      08-09 14:12:41.636 DE:VI:CE:00:00:00 - 59 (changed)
+  
+  AvrcpCoverArtService:
+  	psm = 4103
+  	images (2 / 32):
+  		Handle   : Hash                              : CoverArt
+  		0000000  : c8a898408569bbfccff81f311639d0f5b8ef247da51cfa31070cb72552bb : {handle=0000000, size=360000 }
+  		0000001  : c84ba8abf5aedd235b07acdeaf0526473a01c5c68b632b737e5c8fe9bfff9 : {handle=0000001, size=360000 }
+  	Image bytes: 720000
+  	clients = []
+
+  Volume control:
+
+  CoverArt is not allowed: false
+
+Profile: BassClientService
+Broadcast Assistant Service instance:
+
+
+BassClientService event log:
+  08-02 14:41:32.773 Broadcast Source Unsynced: syncHandle= -2
+  08-04 14:37:54.359 Broadcast Source Unsynced: syncHandle= -2
+  08-05 18:09:38.462 Broadcast Source Unsynced: syncHandle= -2
+  08-06 18:00:07.994 Broadcast Source Unsynced: syncHandle= -2
+  08-09 08:24:59.341 Broadcast Source Unsynced: syncHandle= -2
+  08-09 10:46:31.366 Broadcast Source Unsynced: syncHandle= -2
+  08-09 10:52:04.624 Broadcast Source Unsynced: syncHandle= -2
+  08-09 11:22:02.711 Broadcast Source Unsynced: syncHandle= -2
+  08-09 11:26:32.249 Broadcast Source Unsynced: syncHandle= -2
+
+  Metadata history:
+  BroadcastReceiveState history:
+  Operation history:
+  Adv Found history:
+  Scan history:
+  LeBroadcastAssistantService:
+    Pending Assign GroupId Devices : {}
+
+Profile: BatteryService
+
+Profile: CsipSetCoordinatorService
+  mFoundSetMemberToGroupId: 
+
+Profile: HapClientService
+
+Profile: HeadsetService
+  mMaxHeadsetConnections: 3
+  DefaultMaxHeadsetConnections: 3
+  mActiveDevice: DE:VI:CE:00:00:00
+  isInbandRingingEnabled: true
+  isInbandRingingSupported: true
+  mInbandRingingRuntimeDisable: false
+  mIsSupportVcHandling: true
+  mAudioRouteAllowed: true
+  mVoiceRecognitionStarted: false
+  mVoiceRecognitionTimeoutEvent: null
+  mVirtualCallStarted: false
+  mDialingOutTimeoutEvent: null
+  mForceScoAudio: false
+  Telecom.isInCall(): false
+  Telecom.isRinging(): false
+  HFSM size : 2
+  mHighPriorityDevice : DE:VI:CE:00:00:00
+  PhoneState : 0,6,1,4,0,4,0
+  mIsConnectWhileRinging: false
+  ==== StateMachine for DE:VI:CE:00:00:00 ====
+    mCurrentDevice: DE:VI:CE:00:00:00
+    mIsWatch: false
+    mIsSsBuds: false
+    mSsDeviceType: null
+    mDeviceSilenced: false
+    mHeadsetBssf: 0
+    mHeadsetBrsf: 665
+    mCurrentState: Connected
+    mPrevState: Connecting
+    mConnectionState: 2
+    mAudioState: 10
+    mNeedDialingOutReply: false
+    mSpeakerVolume: 0
+    mMicVolume: 0
+    mConnectingTimestampMs(uptimeMillis): 297603414
+    mHsClientAudioPolicy: BluetoothSinkAudioPolicy{mCallEstablishPolicy: 0, mConnectingTimePolicy: 0, mInBandRingtonePolicy: 0}
+    mInbandRingtoneSupport: true
+    mVolumeControlSupport: true
+    mBatteryLevel: 90
+    StateMachine: name=HeadsetStateMachine state=Connected
+    StateMachineLog:
+      HeadsetStateMachine:
+       total records=20
+       rec[0]: time=08-09 14:11:06.959 processed=Disconnected org=Disconnected dest=Connecting what=1(0x1) CONNECT: arg1=0, arg2=0, obj=DE:VI:CE:00:00:00
+       rec[1]: time=08-09 14:11:10.203 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_CONNECTION_STATE_CHANGED[1], valInt=1, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[2]: time=08-09 14:11:10.204 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_CONNECTION_STATE_CHANGED[1], valInt=2, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[3]: time=08-09 14:11:10.216 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_BRSF[300], valInt=4079, valInt2=665, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[4]: time=08-09 14:11:10.231 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_BAC[303], valInt=3, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[5]: time=08-09 14:11:10.232 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_WBS[17], valInt=2, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[6]: time=08-09 14:11:10.232 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_SWB[21], valInt=0, valInt2=1, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[7]: time=08-09 14:11:10.265 processed=Connecting org=Connecting dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_AT_CIND[12], valInt=0, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[8]: time=08-09 14:11:10.291 processed=Connecting org=Connecting dest=Connected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_CONNECTION_STATE_CHANGED[1], valInt=3, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[9]: time=08-09 14:11:10.307 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[10]: time=08-09 14:11:10.311 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_NOISE_REDUCTION[9], valInt=0, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:00
+       rec[11]: time=08-09 14:11:10.322 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_UNKNOWN_AT[15], valInt=0, valInt2=0, valString=+XAPL=054C-0C93-0452,10, valObject=null, device=DE:VI:CE:00:00:00
+       rec[12]: time=08-09 14:11:10.377 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_UNKNOWN_AT[15], valInt=0, valInt2=0, valString=+IPHONEACCEV=1,1,8, valObject=null, device=DE:VI:CE:00:00:00
+       rec[13]: time=08-09 14:11:10.393 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_UNKNOWN_AT[15], valInt=0, valInt2=0, valString=+APLSIRI?, valObject=null, device=DE:VI:CE:00:00:00
+       rec[14]: time=08-09 14:11:11.318 processed=Connected org=Connected dest=<null> what=321(0x141) SEND_MESSAGE_TO_HEADSET: arg1=0, arg2=0, obj=com.samsung.bt.hfp.SamsungAtCmd@59d0aaf
+       rec[15]: time=08-09 14:11:35.231 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[16]: time=08-09 14:11:52.506 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[17]: time=08-09 14:12:27.803 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[18]: time=08-09 14:12:37.304 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[19]: time=08-09 14:12:47.545 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=4]
+      curState=Connected
+  ==== StateMachine for DE:VI:CE:00:00:01 ====
+    mCurrentDevice: DE:VI:CE:00:00:01
+    mIsWatch: false
+    mIsSsBuds: false
+    mSsDeviceType: null
+    mDeviceSilenced: false
+    mHeadsetBssf: 0
+    mHeadsetBrsf: 0
+    mCurrentState: Disconnected
+    mPrevState: Disconnecting
+    mConnectionState: 0
+    mAudioState: 10
+    mNeedDialingOutReply: false
+    mSpeakerVolume: 0
+    mMicVolume: 12
+    mConnectingTimestampMs(uptimeMillis): -9223372036854775808
+    mHsClientAudioPolicy: BluetoothSinkAudioPolicy{mCallEstablishPolicy: 0, mConnectingTimePolicy: 0, mInBandRingtonePolicy: 0}
+    mInbandRingtoneSupport: true
+    mVolumeControlSupport: true
+    mBatteryLevel: -1
+    StateMachine: name=HeadsetStateMachine state=Disconnected
+    StateMachineLog:
+      HeadsetStateMachine:
+       total records=88
+       rec[0]: time=08-09 12:51:12.415 processed=Connected org=Connected dest=<null> what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_VOLUME_CHANGED[6], valInt=1, valInt2=12, valString=null, valObject=null, device=DE:VI:CE:00:00:01
+       rec[1]: time=08-09 12:51:57.666 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[2]: time=08-09 12:52:13.350 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[3]: time=08-09 12:52:27.590 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[4]: time=08-09 12:52:29.029 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[5]: time=08-09 12:52:30.592 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[6]: time=08-09 12:53:09.370 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[7]: time=08-09 12:53:27.614 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength4, batteryCharge=4]
+       rec[8]: time=08-09 12:54:07.591 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[9]: time=08-09 12:55:18.658 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[10]: time=08-09 12:55:24.658 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[11]: time=08-09 12:55:50.633 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[12]: time=08-09 12:56:00.676 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength3, batteryCharge=4]
+       rec[13]: time=08-09 12:56:09.676 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[14]: time=08-09 12:56:13.028 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength1, batteryCharge=4]
+       rec[15]: time=08-09 12:56:24.233 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[16]: time=08-09 12:56:30.951 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength1, batteryCharge=4]
+       rec[17]: time=08-09 12:56:44.384 processed=Connected org=Connected dest=<null> what=10(0xa) DEVICE_STATE_CHANGED: arg1=0, arg2=0, obj=HeadsetDeviceState[hasCellularService=1, isRoaming=0, signalStrength2, batteryCharge=4]
+       rec[18]: time=08-09 12:56:58.516 processed=Connected org=Connected dest=Disconnecting what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_CONNECTION_STATE_CHANGED[1], valInt=4, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:01
+       rec[19]: time=08-09 12:56:58.524 processed=Disconnecting org=Disconnecting dest=Disconnected what=101(0x65) STACK_EVENT: arg1=0, arg2=0, obj=EVENT_TYPE_CONNECTION_STATE_CHANGED[1], valInt=0, valInt2=0, valString=null, valObject=null, device=DE:VI:CE:00:00:01
+      curState=Disconnected
+
+  SCO SPK volume history
+   - DE:VI:CE:00:00:00 : 8
+   2026/08/07 15:57:15  DE:VI:CE:00:00:01 (H)  -1 >> 12
+   2026/08/07 17:35:21  DE:VI:CE:00:00:01 (H)  -1 >> 4
+   2026/08/07 17:35:21  DE:VI:CE:00:00:01 (H)  -1 >> 12
+   2026/08/07 20:42:18  DE:VI:CE:00:00:01 (H)  -1 >> 4
+   2026/08/07 20:42:18  DE:VI:CE:00:00:01 (H)  -1 >> 12
+   2026/08/07 21:00:04  DE:VI:CE:00:00:01 (H)  -1 >> 4
+   2026/08/07 21:00:04  DE:VI:CE:00:00:01 (H)  -1 >> 12
+   2026/08/08 03:22:09  DE:VI:CE:00:00:04 (H)  -1 >> 11
+   2026/08/09 00:13:59  DE:VI:CE:00:00:04 (H)  -1 >> 11
+   2026/08/09 06:25:48  DE:VI:CE:00:00:04 (H)  -1 >> 11
+   2026/08/09 11:19:05  DE:VI:CE:00:00:04 (H)  -1 >> 11
+   2026/08/09 12:37:03  DE:VI:CE:00:00:01 (H)  -1 >> 4
+   2026/08/09 12:37:03  DE:VI:CE:00:00:01 (H)  -1 >> 12
+   2026/08/09 12:51:10  DE:VI:CE:00:00:01 (H)  -1 >> 4
+   2026/08/09 12:51:10  DE:VI:CE:00:00:01 (H)  -1 >> 12
+
+  VS ATC history
+   2026/08/09 11:20:25  DE:VI:CE:00:00:00  AT+XAPL=054C-0C93-0452,10
+   2026/08/09 11:20:25  DE:VI:CE:00:00:00  AT+IPHONEACCEV=1,1,9
+   2026/08/09 11:22:11  DE:VI:CE:00:00:00  AT+XAPL=054C-0C93-0452,10
+   2026/08/09 11:22:11  DE:VI:CE:00:00:00  AT+IPHONEACCEV=1,1,9
+   2026/08/09 14:11:10  DE:VI:CE:00:00:00  AT+XAPL=054C-0C93-0452,10
+   2026/08/09 14:11:10  DE:VI:CE:00:00:00  AT+IPHONEACCEV=1,1,8
+
+  Disconnected Call history
+   2026/08/03 17:18:06  nA0 nH0 s6
+   2026/08/04 17:14:04  nA0 nH0 s4
+   2026/08/04 17:14:34  nA0 nH0 s7
+   2026/08/04 17:14:34  nA0 nH0 s6
+   2026/08/05 15:10:10  nA0 nH0 s4
+   2026/08/05 15:10:13  nA0 nH0 s7
+   2026/08/05 15:10:13  nA0 nH0 s6
+   2026/08/08 09:21:00  nA0 nH0 s4
+   2026/08/08 09:21:08  nA1 nH0 s6
+   2026/08/08 09:21:35  nA0 nH0 s7
+   2026/08/08 09:21:35  nA0 nH0 s6
+   2026/08/09 10:23:20  nA0 nH0 s2
+   2026/08/09 10:23:55  nA1 nH0 s6
+   2026/08/09 10:28:20  nA0 nH0 s7
+   2026/08/09 10:28:20  nA0 nH0 s6
+
+Profile: HearingAidService
+
+Profile: HidDeviceService
+
+Profile: HidHostService
+  mInputDevices:
+
+Profile: TbsService
+TbsService instance:
+	Ringer Mode: 1
+	mIsInitialized: true
+	mLastIndexAssigned: 0
+	mLastRequestIdAssigned: 0
+	mBearerList size: 0
+	Current call list:
+	Silent mode: false
+
+TbsGatt instance (CCID= 1) event log:
+  08-09 12:35:59.682 Initialized
+
+TbsGeneric event log:
+
+
+Profile: BluetoothMapService
+  Feature: SMS/MMS/EMAIL
+  mRemoteDevice: null
+  mMnsProfileVersion: unknown
+  mConfigNetworkTypeCapability: null
+  mSmsCapable: true
+  mSdpSearchInitiated: false
+  mState: 0
+  mAppObserver: com.android.bluetooth.map.BluetoothMapAppObserver@cbb9bbd
+  mIsWaitingAuthorization: false
+  mRemoveTimeoutMsg: false
+  mPermission: 0
+  mAccountChanged: false
+  mBluetoothMnsObexClient: null
+  mMasInstanceMap:
+    : MasId: 0 Uri:null SMS/MMS:true Socket started: false
+  MAP Device information
+  OUI            Name                          Channel   MTU       MPL       Version   Support   Msg Type  L param   Trans     Retry     Charset   
+
+  Event Report history
+
+  Push Message history
+
+  Set Message Deleted history
+
+  Message Query history
+
+  Version Change history
+    2026-08-09 08:25:00.011 V14
+    2026-08-09 10:46:35.370 V14
+    2026-08-09 10:52:08.551 V14
+    2026-08-09 11:22:03.712 V14
+    2026-08-09 12:35:59.720 V14
+
+Profile: McpService
+Media Control Service instance list:
+	MediaControlService instance current state:
+		Ccid = 2
+		Features: | PLAYER_NAME | TRACK_CHANGED | TRACK_TITLE | TRACK_DURATION | TRACK_POSITION | PLAYBACK_SPEED | SEEKING_SPEED | PLAYING_ORDER | PLAYING_ORDER_SUPPORTED | MEDIA_STATE | MEDIA_CONTROL_POINT | MEDIA_CONTROL_POINT_OPCODES_SUPPORTED | CONTENT_CONTROL_ID | PLAYER_NAME_NOTIFY | TRACK_TITLE_NOTIFY | TRACK_DURATION_NOTIFY | TRACK_POSITION_NOTIFY | PLAYBACK_SPEED_NOTIFY | SEEKING_SPEED_NOTIFY | PLAYING_ORDER_NOTIFY | MEDIA_CONTROL_POINT_OPCODES_SUPPORTED_NOTIFY
+		Player name: TIDAL
+		CurrentPlaybackState = PLAYING
+
+MediaControlGattService instance (CCID=2): :
+  08-09 12:35:59.731 Initializing
+  08-09 12:35:59.736 initGattService: uuid= 00001849-0000-1000-8000-00805f9b34fb
+  08-09 12:35:59.750 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:05, num_uuids= 0
+  08-09 12:35:59.750 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:06, num_uuids= 0
+  08-09 12:35:59.750 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:00, num_uuids= 0
+  08-09 12:35:59.750 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:04, num_uuids= 0
+  08-09 12:35:59.750 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:07, num_uuids= 0
+  08-09 12:35:59.750 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:01, num_uuids= 0
+  08-09 12:35:59.750 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:08, num_uuids= 0
+  08-09 12:35:59.750 setInitialCharacteristicValues
+  08-09 12:35:59.750 updateMediaStateChar: state= INACTIVE(0x00)
+  08-09 12:35:59.755 updatePlayerNameChar: name= ''
+  08-09 12:35:59.765 updateTrackTitleChar: title= ''
+  08-09 12:35:59.769 updateTrackDurationChar: durationMs= -1, duration= -1
+  08-09 12:35:59.771 updateTrackPositionChar: positionMs= -1, position= -1
+  08-09 12:35:59.772 updatePlaybackSpeedChar: intSpeed=0, speed= 1.0
+  08-09 12:35:59.782 updateSeekingSpeedChar: intSpeed=0, speed= 1.0
+  08-09 12:35:59.782 updatePlayingOrderSupportedChar: order= 1
+  08-09 12:35:59.787 updatePlayingOrderChar: order= SINGLE_ONCE
+  08-09 12:35:59.800 updateSupportedOpcodesChar: opcodes= 0x181f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | PREVIOUS_TRACK | NEXT_TRACK)
+  08-09 12:36:00.065 setInitialCharacteristicValues
+  08-09 12:36:00.065 updateMediaStateChar: state= INACTIVE(0x00)
+  08-09 12:36:00.066 updatePlayerNameChar: name= ''
+  08-09 12:36:00.066 updateTrackTitleChar: title= ''
+  08-09 12:36:00.066 updateTrackDurationChar: durationMs= -1, duration= -1
+  08-09 12:36:00.066 updateTrackPositionChar: positionMs= -1, position= -1
+  08-09 12:36:00.066 updatePlayingOrderSupportedChar: order= 1
+  08-09 12:36:00.067 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:00.067 updatePlayerNameChar: name= 'TIDAL'
+  08-09 12:36:00.069 updateTrackTitleChar: title= 'Not Provided'
+  08-09 12:36:00.070 updateTrackDurationChar: durationMs= 0, duration= 0
+  08-09 12:36:00.071 updatePlayingOrderSupportedChar: order= 4
+  08-09 12:36:00.072 updatePlayingOrderChar: order= IN_ORDER_ONCE
+  08-09 12:36:00.341 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:05, num_uuids= 0
+  08-09 12:36:00.341 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:06, num_uuids= 0
+  08-09 12:36:00.341 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:00, num_uuids= 0
+  08-09 12:36:00.341 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:04, num_uuids= 0
+  08-09 12:36:00.341 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:07, num_uuids= 0
+  08-09 12:36:00.341 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:01, num_uuids= 0
+  08-09 12:36:00.341 restoreCccValuesForStoredDevices: device= DE:VI:CE:00:00:08, num_uuids= 0
+  08-09 12:36:05.234 updateTrackPositionChar: positionMs= 151536, position= 15153
+  08-09 12:36:05.235 updateTrackTitleChar: title= 'This Thing We Got'
+  08-09 12:36:05.237 updateTrackDurationChar: durationMs= 227000, duration= 22700
+  08-09 12:36:05.575 updateTrackPositionChar: positionMs= 151556, position= 15155
+  08-09 12:36:05.593 updateSupportedOpcodesChar: opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK)
+  08-09 12:36:05.593 updateMediaStateChar: state= PLAYING(0x01)
+  08-09 12:36:05.672 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:05.672 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:36:05.787 updateTrackPositionChar: positionMs= 46, position= 4
+  08-09 12:36:05.787 updateMediaStateChar: state= PLAYING(0x01)
+  08-09 12:36:06.093 updateTrackPositionChar: positionMs= 103, position= 10
+  08-09 12:36:06.115 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:06.115 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:36:06.148 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:06.148 updateTrackTitleChar: title= 'Running'
+  08-09 12:36:06.148 updateTrackDurationChar: durationMs= 210000, duration= 21000
+  08-09 12:36:06.232 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:06.424 updateTrackPositionChar: positionMs= 7, position= 0
+  08-09 12:36:06.424 updateMediaStateChar: state= PLAYING(0x01)
+  08-09 12:36:09.246 updateTrackPositionChar: positionMs= 2668, position= 266
+  08-09 12:36:09.353 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:09.376 updateTrackTitleChar: title= 'My Hands'
+  08-09 12:36:09.384 updateTrackDurationChar: durationMs= 221000, duration= 22100
+  08-09 12:36:09.384 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:36:09.473 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:09.540 updateTrackPositionChar: positionMs= 7, position= 0
+  08-09 12:36:09.540 updateMediaStateChar: state= PLAYING(0x01)
+  08-09 12:36:10.480 updateTrackPositionChar: positionMs= 725, position= 72
+  08-09 12:36:10.482 updateTrackTitleChar: title= 'I'll Be There'
+  08-09 12:36:10.482 updateTrackDurationChar: durationMs= 279000, duration= 27900
+  08-09 12:36:10.562 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:36:10.562 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:36:10.624 updateTrackPositionChar: positionMs= 7, position= 0
+  08-09 12:36:10.624 updateMediaStateChar: state= PLAYING(0x01)
+  08-09 12:36:10.640 updateTrackPositionChar: positionMs= 25, position= 2
+  08-09 12:36:38.945 updateTrackPositionChar: positionMs= 28328, position= 2832
+  08-09 12:36:43.855 updateTrackPositionChar: positionMs= 33246, position= 3324
+  08-09 12:40:49.249 updateTrackPositionChar: positionMs= 15, position= 1
+  08-09 12:40:49.331 updateTrackPositionChar: positionMs= 98, position= 9
+  08-09 12:40:49.331 updateTrackTitleChar: title= 'My Hands'
+  08-09 12:40:49.332 updateTrackDurationChar: durationMs= 221000, duration= 22100
+  08-09 12:40:49.409 updateTrackPositionChar: positionMs= 176, position= 17
+  08-09 12:43:12.393 updatePlaybackSpeedChar: intSpeed=-128, speed= 0.0
+  08-09 12:43:12.395 updateTrackPositionChar: positionMs= 143051, position= 14305
+  08-09 12:43:12.395 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:51:21.115 updatePlaybackSpeedChar: intSpeed=0, speed= 1.0
+  08-09 12:51:21.124 updateTrackPositionChar: positionMs= 143164, position= 14316
+  08-09 12:51:21.124 updateMediaStateChar: state= PLAYING(0x01)
+  08-09 12:51:22.649 updateTrackPositionChar: positionMs= 0, position= 0
+  08-09 12:51:22.649 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:51:22.867 updateTrackPositionChar: positionMs= 143067, position= 14306
+  08-09 12:51:22.867 updateMediaStateChar: state= PLAYING(0x01)
+  08-09 12:52:40.907 updateTrackPositionChar: positionMs= 48, position= 4
+  08-09 12:52:40.925 updateTrackPositionChar: positionMs= 79, position= 7
+  08-09 12:52:40.925 updateTrackTitleChar: title= 'Running'
+  08-09 12:52:40.925 updateTrackDurationChar: durationMs= 210000, duration= 21000
+  08-09 12:52:40.982 updateTrackPositionChar: positionMs= 137, position= 13
+  08-09 12:56:11.164 updateTrackPositionChar: positionMs= 21, position= 2
+  08-09 12:56:11.188 updateTrackPositionChar: positionMs= 46, position= 4
+  08-09 12:56:11.189 updateTrackTitleChar: title= 'This Thing We Got'
+  08-09 12:56:11.189 updateTrackDurationChar: durationMs= 227000, duration= 22700
+  08-09 12:56:11.301 updateTrackPositionChar: positionMs= 158, position= 15
+  08-09 12:56:42.613 updatePlaybackSpeedChar: intSpeed=-128, speed= 0.0
+  08-09 12:56:42.614 updateTrackPositionChar: positionMs= 31417, position= 3141
+  08-09 12:56:42.614 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:58:56.971 setInitialCharacteristicValues
+  08-09 12:58:56.972 updateMediaStateChar: state= PAUSED(0x02)
+  08-09 12:58:56.976 updatePlayerNameChar: name= ''
+  08-09 12:58:56.976 updateTrackTitleChar: title= ''
+  08-09 12:58:56.976 updateTrackDurationChar: durationMs= -1, duration= -1
+  08-09 12:58:56.978 updateTrackPositionChar: positionMs= -1, position= -1
+  08-09 12:58:56.978 updatePlaybackSpeedChar: intSpeed=0, speed= 1.0
+  08-09 12:58:56.978 updatePlayingOrderSupportedChar: order= 1
+  08-09 12:58:56.978 updatePlayingOrderChar: order= SINGLE_ONCE
+  08-09 12:58:56.978 updateSupportedOpcodesChar: opcodes= 0x181f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | PREVIOUS_TRACK | NEXT_TRACK)
+  08-09 12:58:56.978 updateTrackPositionChar: positionMs= -1, position= -1
+  08-09 12:58:56.979 updateTrackTitleChar: title= 'Not Provided'
+  08-09 12:58:56.979 updateTrackDurationChar: durationMs= 0, duration= 0
+  08-09 12:58:56.979 updateMediaStateChar: state= INACTIVE(0x00)
+  08-09 14:12:37.666 setInitialCharacteristicValues
+  08-09 14:12:37.666 updateMediaStateChar: state= INACTIVE(0x00)
+  08-09 14:12:37.668 updatePlayerNameChar: name= ''
+  08-09 14:12:37.668 updateTrackTitleChar: title= ''
+  08-09 14:12:37.668 updateTrackDurationChar: durationMs= -1, duration= -1
+  08-09 14:12:37.668 updateTrackPositionChar: positionMs= -1, position= -1
+  08-09 14:12:37.668 updatePlayingOrderSupportedChar: order= 1
+  08-09 14:12:37.668 updatePlayerNameChar: name= 'TIDAL'
+  08-09 14:12:37.668 updatePlayingOrderSupportedChar: order= 4
+  08-09 14:12:37.669 updatePlayingOrderChar: order= IN_ORDER_ONCE
+  08-09 14:12:37.669 updateTrackDurationChar: durationMs= 0, duration= 0
+  08-09 14:12:39.176 updateTrackPositionChar: positionMs= 31481, position= 3148
+  08-09 14:12:39.177 updateTrackTitleChar: title= 'This Thing We Got'
+  08-09 14:12:39.177 updateTrackDurationChar: durationMs= 227000, duration= 22700
+  08-09 14:12:39.584 updateTrackPositionChar: positionMs= 31501, position= 3150
+  08-09 14:12:39.585 updateSupportedOpcodesChar: opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK)
+  08-09 14:12:39.585 updateMediaStateChar: state= PLAYING(0x01)
+
+MediaControlProfile:
+  08-09 12:36:05.567 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:05.567 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 151556 (151546)
+  08-09 12:36:05.670 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:05.670 onCurrentPlayerStateUpdated: base actions not supported, player actions= 10931, expected at least= 7f
+  08-09 12:36:05.670 onCurrentPlayerStateUpdated state= PAUSED, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 0 (-1)
+  08-09 12:36:05.784 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:05.784 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:05.784 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 46 (45)
+  08-09 12:36:06.091 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:06.092 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:06.092 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 103 (100)
+  08-09 12:36:06.115 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:06.115 onCurrentPlayerStateUpdated: base actions not supported, player actions= 10931, expected at least= 7f
+  08-09 12:36:06.115 onCurrentPlayerStateUpdated state= PAUSED, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 0 (-1)
+  08-09 12:36:06.147 onMediaUpdated: track_changed=true state_changed=false queue_changed=true
+  08-09 12:36:06.147 onCurrentPlayerStateUpdated metadata: title= 'Running', duration= 210000
+  08-09 12:36:06.225 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:36:06.225 onCurrentPlayerStateUpdated metadata: title= 'Running', duration= 210000
+  08-09 12:36:06.422 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:06.422 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:06.422 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 7 (7)
+  08-09 12:36:09.237 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:09.238 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:09.238 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 2668 (2659)
+  08-09 12:36:09.325 onMediaUpdated: track_changed=true state_changed=true queue_changed=false
+  08-09 12:36:09.325 onCurrentPlayerStateUpdated: base actions not supported, player actions= 10931, expected at least= 7f
+  08-09 12:36:09.325 onCurrentPlayerStateUpdated state= PAUSED, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 0 (-1)
+  08-09 12:36:09.325 onCurrentPlayerStateUpdated metadata: title= 'My Hands', duration= 221000
+  08-09 12:36:09.411 onMediaUpdated: track_changed=false state_changed=false queue_changed=true
+  08-09 12:36:09.472 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:36:09.472 onCurrentPlayerStateUpdated metadata: title= 'My Hands', duration= 221000
+  08-09 12:36:09.535 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:09.535 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:09.535 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 7 (5)
+  08-09 12:36:10.478 onMediaUpdated: track_changed=true state_changed=true queue_changed=false
+  08-09 12:36:10.478 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:10.478 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 725 (725)
+  08-09 12:36:10.478 onCurrentPlayerStateUpdated metadata: title= 'I'll Be There', duration= 279000
+  08-09 12:36:10.551 onMediaUpdated: track_changed=false state_changed=true queue_changed=true
+  08-09 12:36:10.555 onCurrentPlayerStateUpdated: base actions not supported, player actions= 10931, expected at least= 7f
+  08-09 12:36:10.555 onCurrentPlayerStateUpdated state= PAUSED, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 0 (-1)
+  08-09 12:36:10.614 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:10.614 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:10.614 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 7 (6)
+  08-09 12:36:10.633 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:36:10.633 onCurrentPlayerStateUpdated metadata: title= 'I'll Be There', duration= 279000
+  08-09 12:36:38.930 onMediaUpdated: track_changed=false state_changed=true queue_changed=true
+  08-09 12:36:38.935 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:38.935 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 28328 (28321)
+  08-09 12:36:43.852 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:36:43.854 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:36:43.854 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 33246 (33244)
+  08-09 12:40:49.243 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:40:49.248 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:40:49.248 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 15 (7)
+  08-09 12:40:49.331 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:40:49.331 onCurrentPlayerStateUpdated metadata: title= 'My Hands', duration= 221000
+  08-09 12:40:49.409 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:40:49.409 onCurrentPlayerStateUpdated metadata: title= 'My Hands', duration= 221000
+  08-09 12:43:12.389 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:43:12.392 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b35, expected at least= 7f
+  08-09 12:43:12.392 onCurrentPlayerStateUpdated state= PAUSED, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 143051 (143051)
+  08-09 12:51:21.111 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:51:21.114 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:51:21.115 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 143164 (143158)
+  08-09 12:51:22.635 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:51:22.638 onCurrentPlayerStateUpdated: base actions not supported, player actions= 10931, expected at least= 7f
+  08-09 12:51:22.638 onCurrentPlayerStateUpdated state= PAUSED, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 0 (-1)
+  08-09 12:51:22.866 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:51:22.866 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:51:22.866 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 143067 (143065)
+  08-09 12:52:40.891 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:52:40.893 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:52:40.893 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 48 (44)
+  08-09 12:52:40.924 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:52:40.924 onCurrentPlayerStateUpdated metadata: title= 'Running', duration= 210000
+  08-09 12:52:40.969 onMediaUpdated: track_changed=false state_changed=false queue_changed=true
+  08-09 12:52:40.982 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:52:40.982 onCurrentPlayerStateUpdated metadata: title= 'Running', duration= 210000
+  08-09 12:56:11.162 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:56:11.163 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 12:56:11.163 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 21 (17)
+  08-09 12:56:11.188 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:56:11.188 onCurrentPlayerStateUpdated metadata: title= 'This Thing We Got', duration= 227000
+  08-09 12:56:11.229 onMediaUpdated: track_changed=false state_changed=false queue_changed=true
+  08-09 12:56:11.300 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 12:56:11.300 onCurrentPlayerStateUpdated metadata: title= 'This Thing We Got', duration= 227000
+  08-09 12:56:42.602 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 12:56:42.605 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b35, expected at least= 7f
+  08-09 12:56:42.605 onCurrentPlayerStateUpdated state= PAUSED, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 31417 (31417)
+  08-09 12:58:56.970 onMediaUpdated: track_changed=true state_changed=true queue_changed=true
+  08-09 12:58:56.971 onCurrentPlayerStateUpdated metadata: title= 'Not Provided', duration= 0
+  08-09 14:12:37.664 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 14:12:37.666 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32a34, expected at least= 7f
+  08-09 14:12:37.666 onCurrentPlayerStateUpdated state= INACTIVE, supported opcodes= 0x181f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | PREVIOUS_TRACK | NEXT_TRACK), track position= 0 (31481)
+  08-09 14:12:39.175 onMediaUpdated: track_changed=true state_changed=false queue_changed=false
+  08-09 14:12:39.175 onCurrentPlayerStateUpdated metadata: title= 'This Thing We Got', duration= 227000
+  08-09 14:12:39.582 onMediaUpdated: track_changed=false state_changed=true queue_changed=false
+  08-09 14:12:39.584 onCurrentPlayerStateUpdated: base actions not supported, player actions= 32b33, expected at least= 7f
+  08-09 14:12:39.584 onCurrentPlayerStateUpdated state= PLAYING, supported opcodes= 0x183f (PLAY | PAUSE | FAST_REWIND | FAST_FORWARD | STOP | MOVE_RELATIVE | PREVIOUS_TRACK | NEXT_TRACK), track position= 31501 (31499)
+
+
+Profile: PanService
+  mMaxPanDevices: 5
+  mPanIfName: bt-pan
+  mTetherOn: false
+  mPanDevices:
+
+Profile: BluetoothPbapService
+  Properties : 4294967295
+  Stored Phonebook : 362/371
+
+  Last Sent Max MyProfile Property
+    ADR : 0,    EMAIL : 0,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 0
+    TITLE : 0,    PHOTO : 0,    URL : 0,    BDAY : 0,    NICKNAME : 0,    SORT-STRING : 0
+
+  Last Sent Max Phonebook Property
+   v69148 from 2026/08/06 16:49:20
+    ADR : 0,    EMAIL : 1,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 4
+    TITLE : 0,    PHOTO : 1,    URL : 0,    BDAY : 0,    NICKNAME : 1,    SORT-STRING : 0
+
+  Sented Max Property history
+   2026/08/08 10:44:12, v69148, t1
+    ADR : 0,    EMAIL : 1,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 4
+    TITLE : 0,    PHOTO : 1,    URL : 0,    BDAY : 0,    NICKNAME : 1,    SORT-STRING : 0
+   2026/08/08 15:45:26, v69148, t1
+    ADR : 0,    EMAIL : 1,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 4
+    TITLE : 0,    PHOTO : 1,    URL : 0,    BDAY : 0,    NICKNAME : 1,    SORT-STRING : 0
+   2026/08/08 15:47:20, v69148, t1
+    ADR : 0,    EMAIL : 1,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 4
+    TITLE : 0,    PHOTO : 1,    URL : 0,    BDAY : 0,    NICKNAME : 1,    SORT-STRING : 0
+   2026/08/09 12:37:06, v69148, t1
+    ADR : 0,    EMAIL : 1,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 4
+    TITLE : 0,    PHOTO : 1,    URL : 0,    BDAY : 0,    NICKNAME : 1,    SORT-STRING : 0
+   2026/08/09 12:51:14, v69148, t1
+    ADR : 0,    EMAIL : 1,    NOTE : 0,    ORG : 0,    SOUND : 0,    TEL : 4
+    TITLE : 0,    PHOTO : 1,    URL : 0,    BDAY : 0,    NICKNAME : 1,    SORT-STRING : 0
+
+  PBAP Device information
+  OUI            Name                          Channel   MTU       MPL       Support        P Selector     V Selector     Type      Form      Repo
+  00:0D:48       GEELY_EX2                     1         0         8181      0              8389039        0              1         30        98
+  64:05:E4       Uconnect                      3         4091      4080      515            143            0              1         30        30
+
+  PBAP Operation history
+   2026/08/08 10:44:10  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 1 0 0 0 0 0
+   2026/08/08 10:44:10  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 1 1 5000 143 0 0
+   2026/08/08 10:44:26  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 4 0 60 0 0 0
+   2026/08/08 10:44:28  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 2 0 60 0 0 0
+   2026/08/08 10:44:30  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 3 0 60 0 0 0
+   2026/08/08 10:45:49  DISC (DE:VI:CE:00:00:06)  from remote
+   2026/08/08 15:45:24  CONN (DE:VI:CE:00:00:06)  P : 1
+   2026/08/08 15:45:24  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 1 0 0 0 0 0
+   2026/08/08 15:45:24  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 1 1 5000 143 0 0
+   2026/08/08 15:45:41  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 4 0 60 0 0 0
+   2026/08/08 15:45:43  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 2 0 60 0 0 0
+   2026/08/08 15:45:44  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 3 0 60 0 0 0
+   2026/08/08 15:46:33  DISC (DE:VI:CE:00:00:06)  
+   2026/08/08 15:47:17  CONN (DE:VI:CE:00:00:06)  P : 1
+   2026/08/08 15:47:18  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 1 0 0 0 0 0
+   2026/08/08 15:47:18  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 1 1 5000 143 0 0
+   2026/08/08 15:47:33  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 4 0 60 0 0 0
+   2026/08/08 15:47:35  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 2 0 60 0 0 0
+   2026/08/08 15:47:37  GET (DE:VI:CE:00:00:06)  x-bt/phonebook 3 0 60 0 0 0
+   2026/08/08 15:50:06  DISC (DE:VI:CE:00:00:06)  from remote
+   2026/08/09 12:37:03  CONN (DE:VI:CE:00:00:01)  P : 1
+   2026/08/09 12:37:04  GET (DE:VI:CE:00:00:01)  x-bt/phonebook 5 0 100 0 0 0
+   2026/08/09 12:37:05  GET (DE:VI:CE:00:00:01)  x-bt/phonebook 6 0 100 8389039 0 0
+   2026/08/09 12:37:05  GET (DE:VI:CE:00:00:01)  x-bt/phonebook 1 1 1000 8389039 0 0
+   2026/08/09 12:43:20  DISC (DE:VI:CE:00:00:01)  
+   2026/08/09 12:51:11  CONN (DE:VI:CE:00:00:01)  P : 1
+   2026/08/09 12:51:11  GET (DE:VI:CE:00:00:01)  x-bt/phonebook 5 0 100 0 0 0
+   2026/08/09 12:51:13  GET (DE:VI:CE:00:00:01)  x-bt/phonebook 6 0 100 8389039 0 0
+   2026/08/09 12:51:13  GET (DE:VI:CE:00:00:01)  x-bt/phonebook 1 1 1000 8389039 0 0
+   2026/08/09 12:56:58  DISC (DE:VI:CE:00:00:01)  
+
+  PBAP Setting history
+   2026/08/09 08:25:00  V12, TEL_99 ETC_02 PIC_01
+   2026/08/09 10:46:35  V12, TEL_99 ETC_02 PIC_01
+   2026/08/09 10:52:08  V12, TEL_99 ETC_02 PIC_01
+   2026/08/09 11:22:03  V12, TEL_99 ETC_02 PIC_01
+   2026/08/09 12:35:59  V12, TEL_99 ETC_02 PIC_01
+
+  PBAP onChange history
+   - 2026/08/09 12:35:59 ~ 2026/08/09 13:56:46 : 1
+   - 2026/08/09 13:56:46 ~ 2026/08/09 14:12:56 : 0
+   2026/08/08 06:03:05  UPD : 0, 370
+   2026/08/08 07:32:19  UPD : 0, 370
+   2026/08/08 08:13:24  UPD : 0, 370
+   2026/08/08 08:13:34  UPD : 0, 370
+   2026/08/09 05:17:33  UPD : 0, 370
+   2026/08/09 05:59:46  UPD : 0, 370
+   2026/08/09 05:59:56  UPD : 0, 370
+   2026/08/09 07:18:55  UPD : 0, 370
+   2026/08/09 08:25:00  INT : 370
+   2026/08/09 08:26:29  UPD : 0, 370
+   2026/08/09 08:26:53  UPD : 0, 370
+   2026/08/09 10:46:35  INT : 370
+   2026/08/09 10:52:08  INT : 370
+   2026/08/09 11:22:03  INT : 370
+   2026/08/09 12:35:59  INT : 370
+
+Profile: SapService
+  ISS: true
+  ES: true
+  ISSN: true
+
+Profile: VolumeControlService
+
+Profile: LeAudioService
+  isDualModeAudioEnabled: false
+  Active Groups information: 
+    currentlyActiveGroupId: -1
+    mActiveAudioOutDevice: null
+    mActiveAudioInDevice: null
+    mUnicastGroupIdDeactivatedForBroadcastTransition: -1
+    mBroadcastIdDeactivatedForUnicastTransition: Optional.empty
+    mExposedActiveDevice: null
+    mHfpHandoverDevice:null
+   mLeAudioDeviceInactivatedForHfpHandover:null
+    mLeAudioIsInbandRingtoneSupported:true
+
+
+LeAudioService event log:
+  08-09 12:43:12.933 [From Native]: groupId: -1, status: Inactive
+  08-09 12:51:11.025 [From Native]: groupId: -1, status: Inactive
+  08-09 12:56:43.137 [From Native]: groupId: -1, status: Inactive
+  08-09 14:11:10.138 [From Native]: groupId: -1, status: Inactive
+
+Profile: LeAudioBroadcast
+
+
+Profile: OppService
+  No transfer History
+
+GATT ScanFilters
+
+- Regular Scan Clients: 14
+[android(if=1)]  BluetoothLeScanFilter[ Results=0 DeviceAddress=DE:VI:CE:00:00:09 ]
+[android(if=13)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=01 12 33 20 7B F1 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+[com.samsung.android.beaconmanager(if=8)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+[com.samsung.android.beaconmanager(if=8)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd6c-0000-1000-8000-00805f9b34fb ManufacturerId=75 ManufacturerData=10 ManufacturerDataMask=FF ]
+[com.samsung.android.beaconmanager(if=8)]  BluetoothLeScanFilter[ Results=0 ServiceDataUuid=0000fff6-0000-1000-8000-00805f9b34fb ServiceData=00 ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 11 ManufacturerDataMask=0F FF ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 04 00 61 ManufacturerDataMask=FF FF 00 9E ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 09 81 02 14 00 00 E5 0B ManufacturerDataMask=FF FF 00 FF FF 00 00 FF FF ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ServiceDataUuid=0000fd59-0000-1000-8000-00805f9b34fb ServiceData=01 ServiceDataMask=00 ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=4d4c ManufacturerData=FF 1C ManufacturerDataMask=00 FC ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 1D ManufacturerDataMask=0F FF ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ServiceDataUuid=0000fddb-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 09 01 02 14 ManufacturerDataMask=FF FF 7F FF 14 ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 09 01 0F 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 09 01 04 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=01 00 02 00 00 95 ManufacturerDataMask=0F FF FF 00 00 6A ]
+[com.samsung.android.beaconmanager(if=11)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=42 0C 03 05 ManufacturerDataMask=FF FF 7E 07 ]
+[com.samsung.android.mcfds(if=4)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=02 14 60 00 41 00 00 00 08 ManufacturerDataMask=FF FF FF FF FF FF FF FF FF ]
+[com.samsung.android.mcfds(if=5)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=02 18 00 01 1A 8C DB 9A 7D ManufacturerDataMask=FF FF 00 0F 20 40 00 C2 34 ]
+[com.samsung.android.mcfds(if=5)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=02 18 00 00 00 E2 09 14 37 F5 E3 69 E0 ManufacturerDataMask=FF FF 00 80 00 20 00 C0 20 00 40 02 00 ]
+[com.samsung.android.mcfserver(if=9)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 00 00 00 01 ManufacturerDataMask=FF FF 00 00 FF FF 00 00 00 01 ]
+[com.samsung.android.mcfserver(if=12)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceData=03 ServiceDataMask=07 ]
+[com.samsung.android.mcfserver(if=12)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceData=04 ServiceDataMask=0F ]
+[com.samsung.android.mcfserver(if=12)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceData=02 ServiceDataMask=07 ]
+[com.samsung.android.mcfserver(if=12)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=0F ]
+[com.samsung.android.mcfserver(if=12)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceData=03 ServiceDataMask=0F ]
+[com.samsung.android.mcfserver(if=15)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 ManufacturerDataMask=FF FF 00 00 FF FF ]
+[com.google.android.gms(if=2)]  BluetoothLeScanFilter[ Results=0 ServiceDataUuid=0000fcf1-0000-1000-8000-00805f9b34fb ServiceData= ServiceDataMask= ]
+[com.google.android.gms(if=3)]  BluetoothLeScanFilter[ Results=0 ServiceDataUuid=0000fe2c-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+[com.google.android.gms(if=14)]  BluetoothLeScanFilter[ Results=0 ServiceDataUuid=0000fc73-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+[com.google.android.gms(if=14)]  BluetoothLeScanFilter[ Results=0 ServiceDataUuid=0000fef3-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+[com.google.android.gms(if=14)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fef3-0000-1000-8000-00805f9b34fb ]
+[com.samsung.android.oneconnect(if=7)]  BluetoothLeScanFilter[ Results=33 ManufacturerId=75 ManufacturerData=42 04 87 00 ManufacturerDataMask=FF FF 78 1E ]
+[com.samsung.android.oneconnect(if=7)]  BluetoothLeScanFilter[ Results=3 ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ]
+[com.samsung.android.oneconnect(if=7)]  BluetoothLeScanFilter[ Results=0 ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+[br.com.voeazul(if=10)]  BluetoothLeScanFilter[ Results=883 ManufacturerId=4c ManufacturerData=01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+[br.com.voeazul(if=10)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=f0da ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+[br.com.voeazul(if=10)]  BluetoothLeScanFilter[ Results=0 ManufacturerId=f0de ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+
+- Batch Scan Clients: 0
+
+Scan Filter History
+Max Number of Scan Filters: 64
+
+- Regular Scan Parameters Change History
+LowPower
+    2026-08-09 14:07:09.735: Window: 202500, Interval: 1860625
+    2026-08-09 14:10:58.743: Window: 160000, Interval: 3120000
+    2026-08-09 14:11:01.823: Window: 202500, Interval: 1860625
+    2026-08-09 14:12:11.879: Window: 160000, Interval: 3120000
+    2026-08-09 14:12:35.020: Window: 202500, Interval: 1860625
+Balanced
+    2026-08-02 09:57:01.805: Window: 191250, Interval: 958125
+LowLatency
+    2026-08-09 11:19:05.936: Window: 4096000, Interval: 4096000
+    2026-08-09 12:40:18.985: Window: 158750, Interval: 305625
+    2026-08-09 13:11:02.410: Window: 4096000, Interval: 4096000
+    2026-08-09 13:56:59.791: Window: 158750, Interval: 305625
+    2026-08-09 14:12:03.778: Window: 4096000, Interval: 4096000
+Custom
+    2026-08-09 14:12:35.988: Window: 160000, Interval: 3120000
+    2026-08-09 14:12:37.033: Window: 55000, Interval: 3120000
+    2026-08-09 14:12:37.033: Window: 160000, Interval: 3120000
+    2026-08-09 14:12:37.033: Window: 55000, Interval: 3120000
+    2026-08-09 14:12:37.033: Window: 160000, Interval: 3120000
+
+- Batch Scan Parameters Change History
+
+- Current Scan Settings
+1M: currScanMode / currScanWindow / currScanInterval: 0 / 202 / 1860
+Coded: currScanMode / currScanWindow / currScanInterval: -2147483648 / 0 / 0
+
+ScanUpgradeDurationMillis: 6000
+ScanTimeoutMillis: 300000
+
+LE Scanner:
+  app_if: 1, app: android[null](687cc64b-ee01-46e2-ba21-7ae849d6ef4a,uid=1000,pid=3129,android,if=1)
+  app_if: 10, app: br.com.voeazul[null](5d15f189-c7c2-4a96-b8dd-ba73cb0d3d69,uid=10491,pid=22878,br.com.voeazul,if=10,reportedDelay=600000)
+  app_if: 6, app: com.nvt.cs[null](fb7f9e82-7aa3-49f3-94e8-8b0c7e300a81,uid=10409,pid=21805,com.nvt.cs,if=6)
+  app_if: 5, app: com.samsung.android.mcfds[null](4d8ddfac-2b0a-47f0-8d2f-72c1331994c3,uid=10095,pid=9161,com.samsung.android.mcfds,if=5)
+  app_if: 2, tag: nearby_presence, app: com.google.android.gms[nearby_presence](afea8ac1-d431-48c6-a67a-0e446f372a2b,uid=10259,pid=19901,com.google.android.gms,if=2)
+  app_if: 3, tag: nearby_fast_pair, app: com.google.android.gms[nearby_fast_pair](c577f632-9a0f-444e-8190-c50f04a6cde2,uid=10259,pid=19901,com.google.android.gms,if=3)
+  app_if: 4, app: com.samsung.android.mcfds[null](0ccb9069-a3a2-4d38-b95d-102787558feb,uid=10095,pid=9161,com.samsung.android.mcfds,if=4)
+  app_if: 7, app: com.samsung.android.oneconnect[null](2b68bdd4-5145-47ae-8156-9fa5b9192018,uid=10342,pid=19361,com.samsung.android.oneconnect,if=7)
+  app_if: 8, app: com.samsung.android.beaconmanager[null](dbbff5c5-dbeb-4d26-b075-f37bd7f8dddf,uid=5006,pid=23337,com.samsung.android.beaconmanager,if=8)
+  app_if: 9, app: com.samsung.android.mcfserver[null](da3d9bd6-9a91-4222-8467-245d6a459de6,uid=10125,pid=15842,com.samsung.android.mcfserver,if=9)
+  app_if: 11, app: com.samsung.android.beaconmanager[null](5b5224ba-514b-4b69-995c-acd5b5ca364f,uid=5006,pid=23337,com.samsung.android.beaconmanager,if=11)
+  app_if: 12, app: com.samsung.android.mcfserver[null](7287019b-0fe7-4a2f-94ed-1a4001b0f750,uid=10125,pid=15842,com.samsung.android.mcfserver,if=12)
+  app_if: 13, app: android[null](ab0d7177-0789-49e6-9278-9b21c9e991ca,uid=1000,pid=3129,android,if=13)
+  app_if: 14, tag: nearby_connections, app: com.google.android.gms[nearby_connections](85c1ab96-0036-41e4-b7e5-ce0c66e5821f,uid=10259,pid=19901,com.google.android.gms,if=14)
+  app_if: 15, app: com.samsung.android.mcfserver[null](7af616d5-6da4-4dd8-96bb-3e6fe6dbee2c,uid=10125,pid=15842,com.samsung.android.mcfserver,if=15)
+
+LE Scanner Map:
+  Entries: 11
+
+  com.samsung.android.mdx.kit:
+    LE scans               (started/stopped)                                   : 84 / 84
+    Scan time(ms)          (active/suspend/freeze/total)                              : 16136600 / 0 / 0 / 16136600
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 5781224 / 0 / 15294 / 0 / 0
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 39 / 0 / 7 / 0 / 38
+    Score                                                                      : 593416
+    Total number of results(scr_off/total)                                                      : 0/0
+    Last 5 scans:
+      08-05 17:33:15.064 - 08-05 17:33:17.407 (2343ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (14)  pid: (20203) CB Ext(1) 100% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 01 ManufacturerDataMask=FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd7e-0000-1000-8000-00805f9b34fb ServiceData= ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 13 ManufacturerDataMask=FF FF ]
+      08-06 09:23:30.815 - 08-06 09:23:31.473 (658ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (10)  pid: (14383) CB Ext(1) 100% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 01 ManufacturerDataMask=FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd7e-0000-1000-8000-00805f9b34fb ServiceData= ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 13 ManufacturerDataMask=FF FF ]
+      08-06 09:23:34.805 - 08-06 09:23:39.184 (4379ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (10)  pid: (14383) CB Ext(1) 100% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 01 ManufacturerDataMask=FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd7e-0000-1000-8000-00805f9b34fb ServiceData= ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 13 ManufacturerDataMask=FF FF ]
+      08-06 10:10:09.783 - 08-06 10:10:11.129 (1346ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (14)  pid: (28038) CB Ext(1) 100% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 01 ManufacturerDataMask=FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd7e-0000-1000-8000-00805f9b34fb ServiceData= ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 13 ManufacturerDataMask=FF FF ]
+      08-08 14:49:08.943 - 08-08 14:49:13.189 (4246ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (12)  pid: (28163) CB Ext(1) 100% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 01 ManufacturerDataMask=FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd7e-0000-1000-8000-00805f9b34fb ServiceData= ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 13 ManufacturerDataMask=FF FF ]
+
+  com.google.android.gms (Registered):
+    Application ID: 2, UUID: afea8ac1-d431-48c6-a67a-0e446f372a2b, Tag: nearby_presence
+    Application ID: 3, UUID: c577f632-9a0f-444e-8190-c50f04a6cde2, Tag: nearby_fast_pair
+    Application ID: 14, UUID: 85c1ab96-0036-41e4-b7e5-ce0c66e5821f, Tag: nearby_connections
+    LE scans               (started/stopped)                                   : 2696 / 2693
+    Scan time(ms)          (active/suspend/freeze/total)                              : 361197342 / 0 / 0 / 361197342
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 61749976 / 295085251 / 0 / 4362115 / 0 / 0
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 243 / 2204 / 0 / 249 / 0 / 0
+    Score                                                                      : 33870640
+    Total number of results(scr_off/total)                                                      : 4054/8104
+    Last 5 scans:
+      08-09 14:10:59.823 - 08-09 14:11:01.888 (2065ms) (Opp) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (2)  pid: (19901) [nearby_presence] CB Ext(1) 0% Regular Scan
+        App Importance: Foreground Service
+        Scan Config: [ScanMode=OPPORTUNISTIC, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fcf1-0000-1000-8000-00805f9b34fb ServiceData= ServiceDataMask= ]
+      08-09 14:11:01.824 - 08-09 14:12:11.875 (70051ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (7)  pid: (19901) [nearby_fast_pair] CB Ext(1) 10% Regular Scan
+        App Importance: Foreground Service
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fe2c-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      08-09 14:11:01.868 - 08-09 14:12:11.899 (70031ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (3)  pid: (19901) [nearby_connections] CB Ext(1) 10% Regular Scan
+        App Importance: Foreground Service
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fc73-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fef3-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fef3-0000-1000-8000-00805f9b34fb ]
+      08-09 14:11:01.900 - 08-09 14:12:13.207 (71307ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (2)  pid: (19901) [nearby_presence] CB Ext(1) 10% Regular Scan
+        App Importance: Foreground Service
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fcf1-0000-1000-8000-00805f9b34fb ServiceData= ServiceDataMask= ]
+      08-09 14:12:13.223 - 08-09 14:12:35.048 (21825ms) (Opp) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (2)  pid: (19901) [nearby_presence] CB Ext(1) 0% Regular Scan
+        App Importance: Foreground Service
+        Scan Config: [ScanMode=OPPORTUNISTIC, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fcf1-0000-1000-8000-00805f9b34fb ServiceData= ServiceDataMask= ]
+    Ongoing 3 scans:
+      08-09 14:12:35.057 - 08-09 14:12:56.536 (21479ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (2)  pid: (19901) [nearby_presence] CB Ext(1) 10% Regular Scan
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fcf1-0000-1000-8000-00805f9b34fb ServiceData= ServiceDataMask= ]
+      08-09 14:12:35.083 - 08-09 14:12:56.536 (21453ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (3)  pid: (19901) [nearby_fast_pair] CB Ext(1) 10% Regular Scan
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fe2c-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      08-09 14:12:35.977 - 08-09 14:12:56.536 (20559ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (14)  pid: (19901) [nearby_connections] CB Ext(1) 10% Regular Scan
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fc73-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fef3-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fef3-0000-1000-8000-00805f9b34fb ]
+
+  com.samsung.android.oneconnect (Registered):
+    Application ID: 7, UUID: 2b68bdd4-5145-47ae-8156-9fa5b9192018
+    LE scans               (started/stopped)                                   : 2370 / 2369
+    Scan time(ms)          (active/suspend/freeze/total)                              : 615008926 / 0 / 0 / 615008926
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 21418
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 2370
+    Score                                                                      : 1070
+    Total number of results(scr_off/total)                                                      : 2232/224124
+    Last 5 scans:
+      08-09 13:59:20.439 - 08-09 14:07:09.713 (469274ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (4)  pid: (19361) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceData=08 ServiceDataMask=08 ]
+      08-09 14:07:09.823 - 08-09 14:10:58.760 (228937ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/492 id: (7)  pid: (19361) CB Leg 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 04 87 00 ManufacturerDataMask=FF FF 78 1E ]
+      08-09 14:10:58.875 - 08-09 14:11:01.841 (2966ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (4)  pid: (19361) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceData=08 ServiceDataMask=08 ]
+      08-09 14:11:01.956 - 08-09 14:12:12.174 (70218ms) (Filter:3) Results(SCR_OFF/TOTAL): 2/123 id: (9)  pid: (19361) CB Leg 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 04 87 00 ManufacturerDataMask=FF FF 78 1E ]
+      08-09 14:12:12.288 - 08-09 14:12:34.997 (22709ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (4)  pid: (19361) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceData=08 ServiceDataMask=08 ]
+    Ongoing 1 scans:
+      08-09 14:12:35.118 - 08-09 14:12:56.536 (21418ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/36 id: (7)  pid: (19361) CB Leg 5% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 04 87 00 ManufacturerDataMask=FF FF 78 1E ]
+
+  android (Registered):
+    Application ID: 1, UUID: 687cc64b-ee01-46e2-ba21-7ae849d6ef4a
+    Application ID: 13, UUID: ab0d7177-0789-49e6-9278-9b21c9e991ca
+    LE scans               (started/stopped)                                   : 2658 / 2656
+    Scan time(ms)          (active/suspend/freeze/total)                              : 1111739433 / 0 / 0 / 1111739433
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 488457763 / 0 / 0 / 0 / 21047
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 64 / 0 / 0 / 0 / 2594
+    Score                                                                      : 48846828
+    Total number of results(scr_off/total)                                                      : 424/1043
+    Last 5 scans:
+      08-09 13:59:20.862 - 08-09 14:07:09.682 (468820ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (7)  pid: (3129) CB Leg 1% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 12 33 20 7B F1 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 14:07:10.199 - 08-09 14:10:58.718 (228519ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (13)  pid: (3129) CB Leg 5% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 12 33 20 7B F1 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 14:10:59.264 - 08-09 14:11:01.836 (2572ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (5)  pid: (3129) CB Leg 1% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 12 33 20 7B F1 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 14:11:02.353 - 08-09 14:12:12.133 (69780ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (14)  pid: (3129) CB Leg 5% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 12 33 20 7B F1 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 14:12:12.678 - 08-09 14:12:34.966 (22288ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (5)  pid: (3129) CB Leg 1% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 12 33 20 7B F1 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+    Ongoing 2 scans:
+      08-09 12:56:42.610 - 08-09 14:12:56.536 (4573926ms) (Back) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (1)  pid: (3129) CB Leg 5% Regular Scan
+        Scan Config: [ScanMode=LOW_POWER, callbackType=[FIRST_MATCH | LOST]]
+      -- BluetoothLeScanFilter[ DeviceAddress=DE:VI:CE:00:00:09 ]
+      08-09 14:12:35.489 - 08-09 14:12:56.536 (21047ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (13)  pid: (3129) CB Leg 5% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 12 33 20 7B F1 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+
+  com.nvt.cs (Registered):
+    Application ID: 6, UUID: fb7f9e82-7aa3-49f3-94e8-8b0c7e300a81
+    LE scans               (started/stopped)                                   : 1356 / 1355
+    Scan time(ms)          (active/suspend/freeze/total)                              : 12542111 / 2762098 / 229864383 / 245168592
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 12542111 / 0 / 0
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 1356 / 0 / 0
+    Score                                                                      : 12542111
+    Total number of results(scr_off/total)                                                      : 0/17315
+    Last 5 scans:
+      08-09 13:41:07.033 - 08-09 13:41:10.031 (2998ms) Results(SCR_OFF/TOTAL): 0/23 id: (7)  pid: (21805) CB Leg 100% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      08-09 13:41:10.040 - 08-09 13:41:13.038 (2998ms) Results(SCR_OFF/TOTAL): 0/13 id: (7)  pid: (21805) CB Leg 100% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      08-09 13:41:15.766 - 08-09 13:56:59.682 (943916ms) Results(SCR_OFF/TOTAL): 0/45 id: (7)  pid: (21805) CB Leg 100% Regular Scan
+        App Importance: Lower than Foreground Service
+      -- Leg 100% 
+      -- Suspended Time:956960ms, Freezed Time:934573ms, Active Time:9237ms
+      -- Scan Config: [ ScanMode=LOW_LATENCY
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      08-09 13:56:59.791 - 08-09 13:57:02.795 (3004ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (6)  pid: (21805) CB Leg 51% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=59 ManufacturerData=54 BA ManufacturerDataMask=FF FF ]
+      08-09 13:57:07.779 - 08-09 14:11:59.988 (892209ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (6)  pid: (21805) CB Leg 51% Regular Scan
+        App Importance: Lower than Foreground Service
+      -- Leg 51% 
+      -- Suspended Time:0ms, Freezed Time:867873ms, Active Time:80884ms
+      -- Scan Config: [ ScanMode=LOW_LATENCY
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=59 ManufacturerData=54 BA ManufacturerDataMask=FF FF ]
+    Ongoing 1 scans:
+      08-09 14:12:03.778 - 08-09 14:12:56.536 (52758ms) (Suspended) Results(SCR_OFF/TOTAL): 0/6 id: (6)  pid: (21805) CB Leg 100% Regular Scan
+      -- Leg 100% 
+      -- Suspended Time:0ms, Freezed Time:50547ms, Active Time:2211ms
+      -- Scan Config: [ ScanMode=LOW_LATENCY
+        Scan Config: [ScanMode=LOW_LATENCY, callbackType=ALL_MATCHES]
+
+  br.com.voeazul (Registered):
+    Application ID: 10, UUID: 5d15f189-c7c2-4a96-b8dd-ba73cb0d3d69
+    LE scans               (started/stopped)                                   : 42 / 41
+    Scan time(ms)          (active/suspend/freeze/total)                              : 317262094 / 0 / 147315947 / 464578041
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 317262094 / 0 / 0 / 0
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 42 / 0 / 0 / 0
+    Score                                                                      : 79315523
+    Total number of results(scr_off/total)                                                      : 3/69803
+    Number of batch alarms scheduled                                           : 1920
+    Last 5 scans:
+      08-09 05:17:24.935 - 08-09 08:24:59.400 (11254465ms) (Forced) (Filter:3) Results(SCR_OFF/TOTAL): 0/691 id: (5)  pid: (22878) PI Leg 19% Regular Scan
+        App Importance: Lower than Foreground Service
+      -- Leg 19% 
+      -- Suspended Time:0ms, Freezed Time:2634914ms, Active Time:29496687ms
+      -- Scan Config: [ ScanMode=BALANCED
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES_AUTO_BATCH]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0da ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0de ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 08:50:42.714 - 08-09 09:07:44.512 (1021798ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/99 id: (9)  pid: (22878) PI Leg 19% Auto Batch Scan
+        App Importance: Lower than Foreground Service
+      -- Leg 19% 
+      -- Suspended Time:0ms, Freezed Time:832901ms, Active Time:18500921ms
+      -- Scan Config: [ ScanMode=BALANCED
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES_AUTO_BATCH]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0da ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0de ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 09:07:44.529 - 08-09 10:17:03.754 (4159225ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/2400 id: (7)  pid: (22878) PI Leg 19% Auto Batch Scan
+        App Importance: Lower than Foreground Service
+      -- Leg 19% 
+      -- Suspended Time:0ms, Freezed Time:1001956ms, Active Time:17310051ms
+      -- Scan Config: [ ScanMode=BALANCED
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES_AUTO_BATCH]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0da ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0de ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 10:17:03.767 - 08-09 10:46:31.419 (1767652ms) (Forced) (Filter:3) Results(SCR_OFF/TOTAL): 0/1118 id: (6)  pid: (22878) PI Leg 19% Regular Scan
+        App Importance: Higher than Foreground Service
+      -- Leg 19% 
+      -- Suspended Time:0ms, Freezed Time:206968ms, Active Time:13945801ms
+      -- Scan Config: [ ScanMode=BALANCED
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES_AUTO_BATCH]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0da ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0de ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      08-09 11:11:15.548 - 08-09 11:22:02.757 (647209ms) (Forced) (Filter:3) Results(SCR_OFF/TOTAL): 0/513 id: (6)  pid: (22878) PI Leg 19% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES_AUTO_BATCH]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0da ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0de ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+    Ongoing 1 scans:
+      08-09 13:26:06.954 - 08-09 14:12:56.536 (2809582ms) (Forced) (Filter:3) Results(SCR_OFF/TOTAL): 0/883 id: (10)  pid: (22878) PI Leg 19% Regular Scan
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES_AUTO_BATCH]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0da ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=f0de ManufacturerData=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ManufacturerDataMask=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ]
+
+  com.samsung.android.mcfserver (Registered):
+    Application ID: 9, UUID: da3d9bd6-9a91-4222-8467-245d6a459de6
+    Application ID: 12, UUID: 7287019b-0fe7-4a2f-94ed-1a4001b0f750
+    Application ID: 15, UUID: 7af616d5-6da4-4dd8-96bb-3e6fe6dbee2c
+    LE scans               (started/stopped)                                   : 3155 / 3152
+    Scan time(ms)          (active/suspend/freeze/total)                              : 305286468 / 0 / 0 / 305286468
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 62333
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 3155
+    Score                                                                      : 3116
+    Total number of results(scr_off/total)                                                      : 251/903
+    Last 5 scans:
+      08-09 14:10:10.822 - 08-09 14:10:58.771 (47949ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (11)  pid: (15842) CB Leg 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 00 00 00 01 ManufacturerDataMask=FF FF 00 00 FF FF 00 00 00 01 ]
+      08-09 14:11:01.962 - 08-09 14:11:05.130 (3168ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (11)  pid: (15842) CB Leg 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 00 00 00 01 ManufacturerDataMask=FF FF 00 00 FF FF 00 00 00 01 ]
+      08-09 14:11:05.235 - 08-09 14:11:09.362 (4127ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (11)  pid: (15842) CB Leg 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 ManufacturerDataMask=FF FF 00 00 FF FF ]
+      08-09 14:11:02.052 - 08-09 14:12:12.173 (70121ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (13)  pid: (15842) CB Leg 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 ManufacturerDataMask=FF FF 00 00 FF FF ]
+      08-09 14:11:09.466 - 08-09 14:12:12.179 (62713ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (11)  pid: (15842) CB Leg 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 00 00 00 01 ManufacturerDataMask=FF FF 00 00 FF FF 00 00 00 01 ]
+    Ongoing 3 scans:
+      08-09 14:12:35.118 - 08-09 14:12:56.536 (21418ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (9)  pid: (15842) CB Leg 5% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 00 00 00 01 ManufacturerDataMask=FF FF 00 00 FF FF 00 00 00 01 ]
+      08-09 14:12:35.128 - 08-09 14:12:56.536 (21408ms) (Filter:5) Results(SCR_OFF/TOTAL): 0/0 id: (12)  pid: (15842) CB Leg 5% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceData=03 ServiceDataMask=07 ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceData=04 ServiceDataMask=0F ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd5a-0000-1000-8000-00805f9b34fb ServiceData=02 ServiceDataMask=07 ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=0F ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceDataUuid=0000fd69-0000-1000-8000-00805f9b34fb ServiceData=03 ServiceDataMask=0F ]
+      08-09 14:12:37.029 - 08-09 14:12:56.536 (19507ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (15)  pid: (15842) CB Leg 5% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 00 00 05 01 ManufacturerDataMask=FF FF 00 00 FF FF ]
+
+  com.samsung.android.service.aircommand:
+    LE scans               (started/stopped)                                   : 1 / 1
+    Scan time(ms)          (active/suspend/freeze/total)                              : 226 / 0 / 0 / 226
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 0
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 1
+    Score                                                                      : 0
+    Total number of results(scr_off/total)                                                      : 0/1
+    Last 1 scans:
+      08-02 10:12:40.769 - 08-02 10:12:40.995 (226ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/1 id: (9)  pid: (9025) CB Leg 100% Regular Scan
+        App Importance: Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ DeviceAddress=DE:VI:CE:00:00:0A ]
+
+  com.samsung.android.beaconmanager (Registered):
+    Application ID: 8, UUID: dbbff5c5-dbeb-4d26-b075-f37bd7f8dddf
+    Application ID: 11, UUID: 5b5224ba-514b-4b69-995c-acd5b5ca364f
+    LE scans               (started/stopped)                                   : 3698 / 3696
+    Scan time(ms)          (active/suspend/freeze/total)                              : 774123507 / 0 / 0 / 774123507
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 42830
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 0 / 0 / 0 / 3698
+    Score                                                                      : 428
+    Total number of results(scr_off/total)                                                      : 220/11147
+    Last 5 scans:
+      08-09 14:11:01.955 - 08-09 14:11:07.256 (5301ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (8)  pid: (23337) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd6c-0000-1000-8000-00805f9b34fb ManufacturerId=75 ManufacturerData=10 ManufacturerDataMask=FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fff6-0000-1000-8000-00805f9b34fb ServiceData=00 ]
+      08-09 14:11:01.965 - 08-09 14:11:07.258 (5293ms) (Filter:12) Results(SCR_OFF/TOTAL): 0/0 id: (12)  pid: (23337) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 11 ManufacturerDataMask=0F FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 04 00 61 ManufacturerDataMask=FF FF 00 9E ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 81 02 14 00 00 E5 0B ManufacturerDataMask=FF FF 00 FF FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd59-0000-1000-8000-00805f9b34fb ServiceData=01 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4d4c ManufacturerData=FF 1C ManufacturerDataMask=00 FC ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 1D ManufacturerDataMask=0F FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fddb-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 02 14 ManufacturerDataMask=FF FF 7F FF 14 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 0F 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 04 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 00 02 00 00 95 ManufacturerDataMask=0F FF FF 00 00 6A ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 0C 03 05 ManufacturerDataMask=FF FF 7E 07 ]
+      08-09 14:11:07.366 - 08-09 14:12:12.150 (64784ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (8)  pid: (23337) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd6c-0000-1000-8000-00805f9b34fb ManufacturerId=75 ManufacturerData=10 ManufacturerDataMask=FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fff6-0000-1000-8000-00805f9b34fb ServiceData=00 ]
+      08-09 14:11:07.372 - 08-09 14:12:12.152 (64780ms) (Filter:12) Results(SCR_OFF/TOTAL): 0/0 id: (12)  pid: (23337) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 11 ManufacturerDataMask=0F FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 04 00 61 ManufacturerDataMask=FF FF 00 9E ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 81 02 14 00 00 E5 0B ManufacturerDataMask=FF FF 00 FF FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd59-0000-1000-8000-00805f9b34fb ServiceData=01 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4d4c ManufacturerData=FF 1C ManufacturerDataMask=00 FC ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 1D ManufacturerDataMask=0F FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fddb-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 02 14 ManufacturerDataMask=FF FF 7F FF 14 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 0F 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 04 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 00 02 00 00 95 ManufacturerDataMask=0F FF FF 00 00 6A ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 0C 03 05 ManufacturerDataMask=FF FF 7E 07 ]
+      08-09 14:12:12.260 - 08-09 14:12:34.998 (22738ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (3)  pid: (23337) CB Leg 1% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd6c-0000-1000-8000-00805f9b34fb ManufacturerId=75 ManufacturerData=10 ManufacturerDataMask=FF ]
+    Ongoing 2 scans:
+      08-09 14:12:35.118 - 08-09 14:12:56.536 (21418ms) (Filter:3) Results(SCR_OFF/TOTAL): 0/0 id: (8)  pid: (23337) CB Leg 1% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd59-0000-1000-8000-00805f9b34fb ]
+      -- BluetoothLeScanFilter[ ServiceUuid=0000fd6c-0000-1000-8000-00805f9b34fb ManufacturerId=75 ManufacturerData=10 ManufacturerDataMask=FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fff6-0000-1000-8000-00805f9b34fb ServiceData=00 ]
+      08-09 14:12:35.124 - 08-09 14:12:56.536 (21412ms) (Filter:12) Results(SCR_OFF/TOTAL): 0/0 id: (11)  pid: (23337) CB Leg 1% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 11 ManufacturerDataMask=0F FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 04 00 61 ManufacturerDataMask=FF FF 00 9E ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 81 02 14 00 00 E5 0B ManufacturerDataMask=FF FF 00 FF FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fd59-0000-1000-8000-00805f9b34fb ServiceData=01 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4d4c ManufacturerData=FF 1C ManufacturerDataMask=00 FC ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 1D ManufacturerDataMask=0F FF ]
+      -- BluetoothLeScanFilter[ ServiceDataUuid=0000fddb-0000-1000-8000-00805f9b34fb ServiceData=00 ServiceDataMask=00 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 02 14 ManufacturerDataMask=FF FF 7F FF 14 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 0F 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 09 01 04 00 02 00 00 00 21 ManufacturerDataMask=FF FF FF FF 00 02 00 00 00 A1 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=01 00 02 00 00 95 ManufacturerDataMask=0F FF FF 00 00 6A ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=42 0C 03 05 ManufacturerDataMask=FF FF 7E 07 ]
+
+  com.samsung.android.mcfds (Registered):
+    Application ID: 5, UUID: 4d8ddfac-2b0a-47f0-8d2f-72c1331994c3
+    Application ID: 4, UUID: 0ccb9069-a3a2-4d38-b95d-102787558feb
+    LE scans               (started/stopped)                                   : 1896 / 1894
+    Scan time(ms)          (active/suspend/freeze/total)                              : 235358645 / 0 / 0 / 235358645
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 18312622 / 0 / 0 / 21463
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 0 / 116 / 0 / 0 / 1780
+    Score                                                                      : 4579228
+    Total number of results(scr_off/total)                                                      : 234/28654
+    Last 5 scans:
+      08-09 13:59:10.475 - 08-09 13:59:20.333 (9858ms) (Filter:2) Results(SCR_OFF/TOTAL): 1/5 id: (7)  pid: (9161) CB Ext(1) 19% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 01 1A 8C DB 9A 7D ManufacturerDataMask=FF FF 00 0F 20 40 00 C2 34 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 00 00 E2 09 14 37 F5 E3 69 E0 ManufacturerDataMask=FF FF 00 80 00 20 00 C0 20 00 40 02 00 ]
+      08-09 14:07:09.808 - 08-09 14:10:58.727 (228919ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (4)  pid: (9161) CB Ext(1) 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 60 00 41 00 00 00 08 ManufacturerDataMask=FF FF FF FF FF FF FF FF FF ]
+      08-09 14:07:09.710 - 08-09 14:10:58.729 (229019ms) (Filter:2) Results(SCR_OFF/TOTAL): 0/301 id: (5)  pid: (9161) CB Ext(1) 19% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 01 1A 8C DB 9A 7D ManufacturerDataMask=FF FF 00 0F 20 40 00 C2 34 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 00 00 E2 09 14 37 F5 E3 69 E0 ManufacturerDataMask=FF FF 00 80 00 20 00 C0 20 00 40 02 00 ]
+      08-09 14:11:01.889 - 08-09 14:12:12.141 (70252ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (5)  pid: (9161) CB Ext(1) 5% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 60 00 41 00 00 00 08 ManufacturerDataMask=FF FF FF FF FF FF FF FF FF ]
+      08-09 14:11:01.874 - 08-09 14:12:12.149 (70275ms) (Filter:2) Results(SCR_OFF/TOTAL): 0/0 id: (4)  pid: (9161) CB Ext(1) 19% Regular Scan
+        App Importance: Lower than Foreground Service
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 01 1A 8C DB 9A 7D ManufacturerDataMask=FF FF 00 0F 20 40 00 C2 34 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 00 00 E2 09 14 37 F5 E3 69 E0 ManufacturerDataMask=FF FF 00 80 00 20 00 C0 20 00 40 02 00 ]
+    Ongoing 2 scans:
+      08-09 14:12:35.074 - 08-09 14:12:56.537 (21463ms) (Filter:1) Results(SCR_OFF/TOTAL): 0/0 id: (4)  pid: (9161) CB Ext(1) 5% Regular Scan
+        Scan Config: [ScanMode=UNKNOWN(100), callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 14 60 00 41 00 00 00 08 ManufacturerDataMask=FF FF FF FF FF FF FF FF FF ]
+      08-09 14:12:34.985 - 08-09 14:12:56.537 (21552ms) (Filter:2) Results(SCR_OFF/TOTAL): 0/0 id: (5)  pid: (9161) CB Ext(1) 19% Regular Scan
+        Scan Config: [ScanMode=BALANCED, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 01 1A 8C DB 9A 7D ManufacturerDataMask=FF FF 00 0F 20 40 00 C2 34 ]
+      -- BluetoothLeScanFilter[ ManufacturerId=75 ManufacturerData=02 18 00 00 00 E2 09 14 37 F5 E3 69 E0 ManufacturerDataMask=FF FF 00 80 00 20 00 C0 20 00 40 02 00 ]
+
+  com.apple.bnd:
+    LE scans               (started/stopped)                                   : 4 / 4
+    Scan time(ms)          (active/suspend/freeze/total)                              : 38002 / 0 / 0 / 38002
+    Scan time per mode(ms) (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 38002 / 0 / 0 / 0 / 0
+    Scan mode counter      (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery/Custom) : 0 / 4 / 0 / 0 / 0 / 0
+    Score                                                                      : 3800
+    Total number of results(scr_off/total)                                                      : 0/0
+    Last 4 scans:
+      08-03 00:10:34.411 - 08-03 00:10:42.262 (7851ms) (Filter:18) Results(SCR_OFF/TOTAL): 0/0 id: (4)  pid: (30420) CB Leg 10% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 16 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1A 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 05 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 03 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 17 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 26 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=00 90 00 26 ManufacturerDataMask=00 FF FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 25 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0C 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 06 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0B 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 10 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 12 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 2F 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 11 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 09 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      08-03 07:23:41.993 - 08-03 07:23:47.471 (5478ms) (Filter:18) Results(SCR_OFF/TOTAL): 0/0 id: (15)  pid: (12699) CB Leg 10% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 16 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1A 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 05 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 03 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 17 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 26 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=00 90 00 26 ManufacturerDataMask=00 FF FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 25 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0C 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 06 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0B 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 10 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 12 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 2F 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 11 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 09 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      08-08 06:50:35.960 - 08-08 06:50:41.637 (5677ms) (Filter:18) Results(SCR_OFF/TOTAL): 0/0 id: (15)  pid: (14023) CB Leg 10% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 16 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1A 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 05 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 03 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 17 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 26 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=00 90 00 26 ManufacturerDataMask=00 FF FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 25 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0C 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 06 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0B 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 10 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 12 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 2F 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 11 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 09 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      08-09 11:15:02.874 - 08-09 11:15:21.870 (18996ms) (Filter:18) Results(SCR_OFF/TOTAL): 0/0 id: (12)  pid: (3244) CB Leg 10% Regular Scan
+        App Importance: Higher than Foreground Service
+        Scan Config: [ScanMode=LOW_POWER, callbackType=ALL_MATCHES]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 16 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1A 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 05 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 03 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 17 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 26 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=00 90 00 26 ManufacturerDataMask=00 FF FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 25 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0C 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 06 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 0B 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 10 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 12 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 2F 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 11 20 ManufacturerDataMask=FF 00 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 0F 00 09 20 ManufacturerDataMask=FF FF 00 FF FF ]
+      -- BluetoothLeScanFilter[ ManufacturerId=4c ManufacturerData=07 00 00 1D 20 ManufacturerDataMask=FF 00 00 FF FF ]
+
+
+Connection Events:
+  08-09 13:39:09.061 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:39:09.061 DISCONNECTED DE:VI:CE:00:00:0B reason=0
+  08-09 13:39:09.061 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:39:09.061 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=0
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=0
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=0
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=0
+  08-09 13:39:09.060 DISCONNECTED DE:VI:CE:00:00:0B reason=22
+  08-09 13:38:31.569 CONNECTED    DE:VI:CE:00:00:0B
+  08-09 13:38:31.569 CONNECTED    DE:VI:CE:00:00:0C
+  08-09 13:38:31.470 CONNECTED    DE:VI:CE:00:00:0B
+
+Bond Events: 
+  Total Number of events: 0
+
+Link Key Types:
+  DE:VI:CE:00:00:05
+    BR: 
+    LE: LE_KEY_PENC LE_KEY_LCSRK LE_KEY_LID
+  DE:VI:CE:00:00:06
+    BR: AUTH_COMB_P_256
+    LE: LE_KEY_PENC LE_KEY_PID LE_KEY_PCSRK LE_KEY_LENC LE_KEY_LCSRK LE_KEY_LID
+  DE:VI:CE:00:00:00
+    BR: UNAUTH_COMB
+    LE:
+  DE:VI:CE:00:00:04
+    BR: UNAUTH_COMB
+    LE:
+  DE:VI:CE:00:00:07
+    BR: AUTH_COMB_P_256
+    LE: LE_KEY_PENC LE_KEY_PID LE_KEY_PCSRK LE_KEY_LENC LE_KEY_LCSRK LE_KEY_LID
+  DE:VI:CE:00:00:01
+    BR: AUTH_COMB
+    LE:
+  DE:VI:CE:00:00:08
+    BR: UNAUTH_COMB
+    LE:
+
+AVRCP Native State:
+  Devices (0 / 5):
+
+HFAG SM event:
+  [0] 08-09 12:43:21:242 | DE:VI:CE:00:00:01 |  6 | 2 < BTA_AG_RFC_CLOSE_EVT(1289)
+  [0] 08-09 12:51:10:194 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_RFC_OPEN_EVT(1288)
+  [0] 08-09 12:51:10:261 | DE:VI:CE:00:00:01 |  9 | 2 < BTA_AG_API_SETCODEC_EVT(1287)
+  [0] 08-09 12:51:10:261 | DE:VI:CE:00:00:01 |  9 | 2 < BTA_AG_DISC_ACP_RES_EVT(1294)
+  [0] 08-09 12:56:58:515 | DE:VI:CE:00:00:01 |  9 | 2 < BTA_AG_RFC_CLOSE_EVT(1289)
+  [0] 08-09 14:11:10:075 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_OPEN_EVT(1282)
+  [0] 08-09 14:11:10:138 | DE:VI:CE:00:00:00 |  0 | 1 < BTA_AG_DISC_INT_RES_EVT(1295)
+  [0] 08-09 14:11:10:138 | DE:VI:CE:00:00:00 |  0 | 1 < BTA_AG_DISC_OK_EVT(1296)
+  [0] 08-09 14:11:10:200 | DE:VI:CE:00:00:00 | 16 | 1 < BTA_AG_RFC_OPEN_EVT(1288)
+  [0] 08-09 14:11:10:231 | DE:VI:CE:00:00:00 | 16 | 2 < BTA_AG_API_SETCODEC_EVT(1287)
+  [1] 08-09 10:52:08:540 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [1] 08-09 11:22:01:367 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [1] 08-09 11:22:03:704 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [1] 08-09 11:26:31:274 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [1] 08-09 12:35:59:640 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [1] 08-09 12:36:05:586 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_RFC_OPEN_EVT(1288)
+  [1] 08-09 12:36:05:631 | DE:VI:CE:00:00:01 | 18 | 2 < BTA_AG_API_SETCODEC_EVT(1287)
+  [1] 08-09 12:36:05:659 | DE:VI:CE:00:00:01 | 18 | 2 < BTA_AG_DISC_ACP_RES_EVT(1294)
+  [1] 08-09 12:36:25:587 | DE:VI:CE:00:00:01 | 18 | 2 < BTA_AG_SVC_TIMEOUT_EVT(1299)
+  [1] 08-09 12:36:25:618 | DE:VI:CE:00:00:01 | 18 | 3 < BTA_AG_RFC_CLOSE_EVT(1289)
+  [2] 08-09 08:24:58:978 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [2] 08-09 08:24:59:994 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [2] 08-09 10:46:31:136 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [2] 08-09 10:46:35:342 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [2] 08-09 10:52:04:350 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [2] 08-09 10:52:08:540 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [2] 08-09 11:22:01:367 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [2] 08-09 11:22:03:704 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [2] 08-09 11:26:31:274 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [2] 08-09 12:35:59:641 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [3] 08-09 08:24:58:978 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [3] 08-09 08:24:59:994 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [3] 08-09 10:46:31:136 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [3] 08-09 10:46:35:342 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [3] 08-09 10:52:04:350 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [3] 08-09 10:52:08:540 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [3] 08-09 11:22:01:367 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [3] 08-09 11:22:03:704 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [3] 08-09 11:26:31:275 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_DEREGISTER_EVT(1281)
+  [3] 08-09 12:35:59:641 | DE:VI:CE:00:00:0D |  0 | 0 < BTA_AG_API_REGISTER_EVT(1280)
+  [4] None
+  [5] None
+
+HFSCO Call result event and post sco:
+  None
+
+HFSCO SCO event:
+         Time        |           State          <          Event
+  08-09 00:13:58:986 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 04:26:40:414 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 06:25:48:126 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 08:24:58:978 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 11:19:05:494 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 11:19:53:924 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 11:20:24:887 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 11:22:01:367 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 11:22:11:784 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 11:26:31:274 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 12:36:05:556 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 12:36:05:586 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_LISTEN_E    
+  08-09 12:36:05:606 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 12:36:25:588 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 12:36:25:619 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 12:37:02:793 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 12:43:21:242 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 12:51:10:199 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+  08-09 12:56:58:515 | BTA_AG_SCO_LISTEN_ST     < BTA_AG_SCO_SHUTDOWN_E  
+  08-09 14:11:10:203 | BTA_AG_SCO_SHUTDOWN_ST   < BTA_AG_SCO_LISTEN_E    
+
+HFSCO DBFW+ info:
+  None
+
+A2DP State:
+  TxQueue:
+  Counts (enqueue/dequeue/readbuf)                        : 845 / 2982 / 3823
+  Last update time ago in ms (enqueue/dequeue/readbuf)    : 18 / 16 / 16
+  Frames per packet (total/max/ave)                       : 10950 / 6 / 12
+  Counts (flushed/dropped/dropouts)                       : 0 / 0 / 0
+  Counts (max dropped)                                    : 0
+  Last update time ago in ms (flushed/dropped)            : 0 / 0
+  Counts (underflow)                                      : 0
+  Bytes (underflow)                                       : 0
+  Last update time ago in ms (underflow)                  : 0
+  Enqueue deviation counts (overdue/premature)            : 425 / 418
+  Enqueue overdue scheduling time in ms (total/max/ave)   : 31 / 0 / 0
+  Enqueue premature scheduling time in ms (total/max/ave) : 31 / 0 / 0
+  Dequeue deviation counts (overdue/premature)            : 218 / 2763
+  Dequeue overdue scheduling time in ms (total/max/ave)   : 108 / 4 / 0
+  Dequeue premature scheduling time in ms (total/max/ave) : 42847 / 19 / 15
+
+  SS info:
+  alf : 1 alf_ddb : 0 dm_level : 2
+  timer diff : 30ms 0(0), 50ms 0(0), 200ms 0(0)
+  is_dual_play : 0 [1] hndl : 0 stream : 1 gain 1.000000 [2] hndl : 0 stream : 0 gain 0.000000 
+  keep_dual_playing : 0
+
+A2DP LDAC State:
+  Priority: 1000000
+  Config: Rate=96000 Bits=32 Mode=STEREO
+  Selectable: Rate=44100|48000|88200|96000 Bits=16|24|32 Mode=STEREO
+  Local capability: Rate=44100|48000|88200|96000 Bits=16|24|32 Mode=STEREO
+  LDAC quality mode                                       : ABR
+  LDAC transmission bitrate (Kbps)                        : 990
+  LDAC saved transmit queue length                        : 0
+  LDAC adaptive bit rate encode quality mode index        : 0
+  LDAC adaptive bit rate adjustments                      : 2
+  Encoder interval (ms): 20
+  Effective MTU: 879
+  Packet counts (expected/dropped)                        : 3726 / 0
+  PCM read counts (expected/actual)                       : 12675 / 12675
+  PCM read bytes (expected/actual)                        : 12979200 / 12979200
+
+A2DP SSC State:
+  Priority: 8001
+  Config: Invalid
+  Selectable: Invalid
+  Local capability: Rate=44100|48000 Bits=16|24 Mode=STEREO
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+
+A2DP aptX State:
+  Priority: 3001
+  Config: Invalid
+  Selectable: Rate=44100 Bits=16 Mode=STEREO
+  Local capability: Rate=44100 Bits=16 Mode=STEREO
+  Encoder interval (ms): 0
+  Effective MTU: 0
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+
+A2DP AAC State:
+  Priority: 2001
+  Config: Invalid
+  Selectable: Rate=44100 Bits=16 Mode=STEREO
+  Local capability: Rate=44100 Bits=16 Mode=STEREO
+  AAC bitrate mode                                        : Constant (0x0)
+  Variable bitrate enabled : 0
+  CBR with alf supported : 0
+  Bitrate mode : 0
+  Audio object type : 0
+  AudioMuxVersion : 0
+  Signaling mode of the extension AOT : 0
+  Audio input data sampling rate : 0
+  Current encoder bitrate : 0
+  Origin encoder bitrate : 0
+  Peak bitrate : 0
+  Channel mode : 0
+  Transport type : 0
+  Frame count period : 0
+  Encoder interval (ms): 10
+  Effective MTU: 0
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+
+A2DP SBC State:
+  Priority: 1001
+  Config: Invalid
+  Selectable: Rate=44100 Bits=16 Mode=MONO|STEREO
+  Local capability: Rate=44100 Bits=16 Mode=MONO|STEREO
+  Encoder interval (ms): 10
+  Effective MTU: 0
+  Packet counts (expected/dropped)                        : 0 / 0
+  PCM read counts (expected/actual)                       : 0 / 0
+  PCM read bytes (expected/actual)                        : 0 / 0
+  Frames counts (expected/dropped)                        : 0 / 0
+  is_dual_play : 0 
+
+A2DP Peers State:
+  Source: active peer: DE:VI:CE:00:00:00
+  Sink: active peer: null
+  Peer: DE:VI:CE:00:00:00
+    Number of sinks: 5
+    Number of sources: 0
+    Number of SEPs: 5
+    Number of received sinks: 5
+    Number of received sources: 0
+    Number of supported sinks: 5
+    Number of supported sources: 0
+    Acceptor: false
+    Reconfig needed: false
+    Opened: true
+    MTU: 879
+    UUID to connect: 0x110b
+    BTA AV handle: 65
+
+A2DP Source State: Enabled
+  dual_play_mode: 0
+  Active peer: DE:VI:CE:00:00:00
+  Peers:
+  Peer: DE:VI:CE:00:00:00
+    Connected: true
+    Streaming: true
+    SEP: 1(Sink)
+    State Machine: Started
+    Flags: 0x0(None)
+    OpenOnRcTimer: Not scheduled
+    BTA Handle: 0x41
+    Peer ID: 0
