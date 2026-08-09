@@ -16,6 +16,22 @@ fun formatThroughput(bytesPerSecond: Long?): String {
 
 fun formatSampleRate(hz: Int?): String = hz?.let { "%,d Hz".format(Locale.US, it) } ?: "Unknown"
 
+fun formatBitDepth(bits: Int?): String = bits?.let { "$it-bit" } ?: "Unknown"
+
+/** Over-the-air bitrate. Codecs report this in kbps (LDAC) or bps (AAC encoder). */
+fun formatBitrateKbps(kbps: Int?): String =
+    kbps?.let { String.format(Locale.US, "%,d kbps", it) } ?: "Unknown"
+
+fun formatBitrateBps(bps: Int?): String =
+    bps?.takeIf { it > 0 }?.let { String.format(Locale.US, "%,d kbps", it / 1000) } ?: "Unknown"
+
+fun formatPacketLoss(expected: Long?, dropped: Long?): String {
+    if (expected == null || dropped == null) return "Unknown"
+    if (expected <= 0) return "$dropped dropped"
+    val percent = dropped.toDouble() / expected * 100
+    return String.format(Locale.US, "%,d dropped (%.2f%%)", dropped, percent)
+}
+
 fun formatChannelCount(count: Int?): String = when (count) {
     null -> "Unknown"
     1 -> "Mono"

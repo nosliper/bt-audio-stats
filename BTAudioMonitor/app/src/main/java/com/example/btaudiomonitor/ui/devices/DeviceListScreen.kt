@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -38,8 +39,13 @@ import com.example.btaudiomonitor.data.MAX_POLL_INTERVAL_MS
 import com.example.btaudiomonitor.data.MIN_POLL_INTERVAL_MS
 import com.example.btaudiomonitor.data.model.AudioRouteInfo
 import com.example.btaudiomonitor.data.model.ConnectedDevice
+import com.example.btaudiomonitor.data.tier2.Tier2State
+import com.example.btaudiomonitor.ui.format.formatBitDepth
+import com.example.btaudiomonitor.ui.format.formatBitrateBps
+import com.example.btaudiomonitor.ui.format.formatBitrateKbps
 import com.example.btaudiomonitor.ui.format.formatChannelCount
 import com.example.btaudiomonitor.ui.format.formatElapsedSince
+import com.example.btaudiomonitor.ui.format.formatPacketLoss
 import com.example.btaudiomonitor.ui.format.formatSampleRate
 import com.example.btaudiomonitor.ui.format.formatThroughput
 import com.example.btaudiomonitor.ui.format.label
@@ -94,9 +100,11 @@ fun DeviceListScreen(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            item { Tier2Card(state.tier2) }
             item {
                 AudioRouteCard(
                     route = state.audioRoute,
+                    tier2 = state.tier2,
                     lastUpdatedAtMillis = state.lastUpdatedAtMillis,
                 )
             }
@@ -155,10 +163,19 @@ private fun PermissionRationale(onRequestPermission: () -> Unit, modifier: Modif
 }
 
 @Composable
-private fun AudioRouteCard(route: AudioRouteInfo?, lastUpdatedAtMillis: Long?) {
+private fun AudioRouteCard(
+    route: AudioRouteInfo?,
+    tier2: Tier2State,
+    lastUpdatedAtMillis: Long?,
+) {
+    // When tier 2 has the real numbers, tier 1's derived estimate is not just redundant
+    // but actively wrong — it is computed from the mixer rate, which does not have to
+    // match the negotiated link. Show device capabilities only in that case.
+    val hasMeasuredData = tier2 is Tier2State.Available
+
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "Active audio route", style = MaterialTheme.typography.titleMedium)
+            Text(text = "Audio route (device capabilities)", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.padding(top = 4.dp))
             if (route == null) {
                 Text(
@@ -172,28 +189,23 @@ private fun AudioRouteCard(route: AudioRouteInfo?, lastUpdatedAtMillis: Long?) {
                 StatRow("Pipeline rate", formatSampleRate(route.pipelineSampleRateHz))
                 StatRow("Channels", formatChannelCount(route.channelCount))
                 StatRow("Encoding", route.encodingLabel)
-                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-                if (route.isAudioActive) {
-                    StatRow("PCM into encoder", formatThroughput(route.estimatedBytesPerSecond))
-                    Text(
-                        text = "Constant while playing. This is the uncompressed PCM fed " +
-                            "to the Bluetooth codec at the HAL's output rate — not the " +
-                            "over-the-air bitrate, which is lower after LDAC/SBC/AAC " +
-                            "compression and isn't readable without a privileged API.",
-                        style = MaterialTheme.typography.labelSmall,
-                        modifier = Modifier.padding(top = 4.dp),
-                    )
-                } else {
-                    Text(
-                        text = "Idle — no audio is currently playing.",
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                    Text(
-                        text = "While playing, this shows the uncompressed PCM rate fed " +
-                            "to the Bluetooth codec.",
-                        style = MaterialTheme.typography.labelSmall,
-                        modifier = Modifier.padding(top = 4.dp),
-                    )
+                if (!hasMeasuredData) {
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                    if (route.isAudioActive) {
+                        StatRow("PCM into encoder", formatThroughput(route.estimatedBytesPerSecond))
+                        Text(
+                            text = "Estimated from the HAL's output rate, not measured, and " +
+                                "not the over-the-air bitrate. Grant DUMP above for the real " +
+                                "codec and a measured figure.",
+                            style = MaterialTheme.typography.labelSmall,
+                            modifier = Modifier.padding(top = 4.dp),
+                        )
+                    } else {
+                        Text(
+                            text = "Idle — no audio is currently playing.",
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
                 }
             }
             Spacer(Modifier.padding(top = 8.dp))
@@ -242,6 +254,101 @@ private fun ConnectedDeviceCard(device: ConnectedDevice) {
             }
         }
     }
+}
+
+/**
+ * The tier 2 card. This is the only place in the app showing figures that are actually
+ * read from the link rather than derived from format math, so it leads the screen.
+ */
+@Composable
+private fun Tier2Card(tier2: Tier2State) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = if (tier2 is Tier2State.Available) {
+                MaterialTheme.colorScheme.primaryContainer
+            } else {
+                MaterialTheme.colorScheme.surfaceVariant
+            },
+        ),
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = "Measured link stats", style = MaterialTheme.typography.titleMedium)
+            Spacer(Modifier.padding(top = 4.dp))
+
+            when (tier2) {
+                is Tier2State.Unavailable -> Tier2SetupHint()
+
+                is Tier2State.NoActiveCodec -> Text(
+                    text = "Readable, but no A2DP codec is active right now.",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+
+                is Tier2State.Available -> Tier2Details(tier2)
+            }
+        }
+    }
+}
+
+@Composable
+private fun Tier2SetupHint() {
+    Text(
+        text = "Not available. The real codec and measured throughput need the DUMP " +
+            "permission, which can only be granted over adb:",
+        style = MaterialTheme.typography.bodyMedium,
+    )
+    Spacer(Modifier.padding(top = 8.dp))
+    Text(
+        text = "adb shell pm grant com.example.btaudiomonitor " +
+            "android.permission.DUMP",
+        style = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Monospace),
+    )
+    Spacer(Modifier.padding(top = 8.dp))
+    Text(
+        text = "Everything below keeps working without it — it just cannot see the " +
+            "negotiated codec.",
+        style = MaterialTheme.typography.labelSmall,
+    )
+}
+
+@Composable
+private fun Tier2Details(tier2: Tier2State.Available) {
+    val status = tier2.status
+
+    StatRow("Codec", status.codecName)
+    StatRow(
+        "Link format",
+        "${formatSampleRate(status.sampleRateHz)} · ${formatBitDepth(status.bitsPerSample)}" +
+            (status.channelMode?.let { " · $it" } ?: ""),
+    )
+
+    // LDAC reports kbps directly; AAC exposes an encoder bitrate in bps instead.
+    val overTheAir = when {
+        status.ldacBitrateKbps != null -> formatBitrateKbps(status.ldacBitrateKbps) +
+            (status.ldacQualityMode?.let { " ($it)" } ?: "")
+        status.encoderBitrateBps != null -> formatBitrateBps(status.encoderBitrateBps)
+        else -> "Unknown"
+    }
+    StatRow("Over the air", overTheAir)
+
+    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+    StatRow(
+        "Measured throughput",
+        tier2.measuredBytesPerSecond?.let(::formatThroughput) ?: "Sampling…",
+    )
+    Text(
+        text = "Measured from the encoder's byte counter, not calculated from the " +
+            "format. This is PCM into the codec; the over-the-air figure above is what " +
+            "the radio actually carries after compression.",
+        style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier.padding(top = 4.dp),
+    )
+
+    Spacer(Modifier.padding(top = 8.dp))
+    StatRow("Packets", formatPacketLoss(status.packetsExpected, status.packetsDropped))
+    status.effectiveMtuBytes?.let { StatRow("Effective MTU", "$it bytes") }
+    status.isPlaying?.let { StatRow("Streaming", if (it) "Yes" else "No") }
 }
 
 @Composable
